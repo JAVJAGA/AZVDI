@@ -67,15 +67,7 @@ resource "azurerm_virtual_machine" "windows_vm" {
     timezone                  = "${var.vm_timezone}"
   }
 
- tags = {
-    Cloud_Provider = "AZ"
-    Environment = "PRO"
-    Owner      = "TECNOLOGIA-IF"
-    Project    = "SRS_21000191"
-    Project_Description = "MIGRATION_VDI_AZURE"
-    Region = "EUWEST"
-    OSType = "MS-Windows Version"
-  } 
+ 
 }
 
 
