@@ -10,8 +10,8 @@ pipeline{
         // KEYVAULT_URL = credentials('azure_keyvault_url') # keyVaultURL not able to be dereferenced with ${env.KEYVAULT_URL}, keeping for future reference
 
       parameters {
-        string(name: 'AZURE_KEYVAULT_URL', "defaultValue: https://packkeyvault2.vault.azure.net/")
-    }
+      AZURE_KEYVAULT_URL = "https://packkeyvault2.vault.azure.net/"
+      }
 
     
     }
