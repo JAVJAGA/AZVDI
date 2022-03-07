@@ -18,7 +18,7 @@ pipeline{
     }
 
     
-    }
+    
     stages {
     
         stage('Terraform Init'){
