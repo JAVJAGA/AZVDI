@@ -47,7 +47,16 @@ pipeline{
                     tenantIdVariable: 'ARM_TENANT_ID'
                 )]) {
                         dir("src") {
- sh "${env.TF_HOME}/terraform init -input=false"                      
+                        sh """
+                        echo "Initialising Terraform"
+                        terraform init 
+                        -backend=true 
+                        -backend-config="access_key=$ARM_ACCESS_KEY" 
+                        -backend-config="storage_account_name=$BACKEND_STORAGE_ACCOUNT_NAME" 
+                        -backend-config="container_name=$BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME" 
+                        -backend-config="key=$BACKEND_KEY" 
+                        -backend-config="resource_group_name=$RG_NAME"
+                        """
                         }
                      }
                 }
