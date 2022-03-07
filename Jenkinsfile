@@ -25,7 +25,7 @@ pipeline{
                         sh """
                                 
                         echo "Initialising Terraform"
-                        terraform init -backend-config= resource_group_name="RG_TFSTATESTG" -backend-config=storage_account_name="wzaavdtfstategerman" -backend-config=container_name="tfstate" -backend-config=key="${path_relative_to_include()}/terraform.tfstate" -backend-config=subscription_id="8589e8fa-2bc6-467c-bf15-130c0e5de426" -backend-config=tenant_id="cb3c61df-8e0b-45ae-a943-1f7a0b4aaf0a"
+                        terraform init -backend-config= resource_group_name="RG_TFSTATESTG" -backend-config="storage_account_name=wzaavdtfstategerman" -backend-config="container_name=tfstate" -backend-config="access_key=${path_relative_to_include()}/terraform.tfstate" -backend-config="subscription_id=8589e8fa-2bc6-467c-bf15-130c0e5de426" -backend-config="tenant_id=cb3c61df-8e0b-45ae-a943-1f7a0b4aaf0a"
                         """
                            }
                     }
