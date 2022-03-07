@@ -13,7 +13,7 @@ pipeline{
 
       parameters {
 
-        string(name: 'AZURE_KEYVAULT_URL', "defaultValue: https://packkeyvault2.vault.azure.net/")
+        string(name: 'AZURE_KEYVAULT_URL', defaultValue: 'https://packkeyvault2.vault.azure.net/')
 
     }
 
