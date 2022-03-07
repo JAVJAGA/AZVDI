@@ -47,7 +47,7 @@ pipeline{
                     tenantIdVariable: 'ARM_TENANT_ID'
                 )]) {
                         dir("src") {
- sh "${env.TERRAFORM_HOME}/terraform init -input=false"                      
+ sh "${env.TF_HOME}/terraform init -input=false"                      
                         }
                      }
                 }
