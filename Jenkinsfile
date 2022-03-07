@@ -7,28 +7,49 @@ pipeline{
         TF_HOME = tool('terraform')
         TF_IN_AUTOMATION = "true"
         PATH = "$TF_HOME:$PATH"
+        // KEYVAULT_URL = credentials('azure_keyvault_url') # keyVaultURL not able to be dereferenced with ${env.KEYVAULT_URL}, keeping for future reference
+
+      parameters {
+        string(name: 'AZURE_KEYVAULT_URL', defaultValue: 'https://packkeyvault2.vault.azure.net/')
+    }
+
+    
     }
     stages {
     
         stage('Terraform Init'){
-            
+
+            options {
+              azureKeyVault(
+                credentialID: "credential_id",
+                keyVaultURL: "${params.AZURE_KEYVAULT_URL}",
+                secrets: [
+                    [envVariable: 'BACKEND_STORAGE_ACCOUNT_NAME', name: 'BACKEND-STORAGE-ACCOUNT-NAME', secretType: 'Secret'],
+                    [envVariable: 'BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME', name: 'BACKEND-STORAGE-ACCOUNT-CONTAINER-NAME', secretType: 'Secret'],
+                    [envVariable: 'BACKEND_KEY', name: 'BACKEND-KEY', secretType: 'Secret'],
+                    [envVariable: 'RG_NAME', name: 'RG-NAME', secretType: 'Secret'],
+                    [envVariable: 'ARM_ACCESS_KEY', name: 'BACKEND-ACCESS-KEY', secretType: 'Secret']
+                ]
+              )
+            }
+
             steps {
                     ansiColor('xterm') {
                     withCredentials([azureServicePrincipal(
-                    credentialsId: 'credential_id',
+                    credentialsId: 'azure_service_principal',
                     subscriptionIdVariable: 'ARM_SUBSCRIPTION_ID',
                     clientIdVariable: 'ARM_CLIENT_ID',
                     clientSecretVariable: 'ARM_CLIENT_SECRET',
                     tenantIdVariable: 'ARM_TENANT_ID'
-                ), string(credentialsId: 'access_key', variable: 'ARM_ACCESS_KEY')]) {
-                        
+                )]) {
+                        dir("src") {
                         sh """
-                                
                         echo "Initialising Terraform"
-                        terraform init -backend-config= "resource_group_name=rg_storagetfstate" -backend-config="storage_account_name=stgprosegur" -backend-config="container_name=tfstate1" -backend-config="access_key=${path_relative_to_include()}/terraform.tfstate" -backend-config="subscription_id=8589e8fa-2bc6-467c-bf15-130c0e5de426" -backend-config="tenant_id=cb3c61df-8e0b-45ae-a943-1f7a0b4aaf0a"
+                        terraform init -backend-config="access_key=$ARM_ACCESS_KEY" -backend-config="storage_account_name=$BACKEND_STORAGE_ACCOUNT_NAME" -backend-config="container_name=$BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME" -backend-config="key=$BACKEND_KEY" -backend-config="resource_group_name=$RG_NAME"
                         """
-                           }
-                    }
+                        }
+                     }
+                }
              }
         }
 
