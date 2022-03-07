@@ -49,7 +49,7 @@ pipeline{
                         dir("src") {
                         sh """
                         echo "Initialising Terraform"
-                        terraform init -backend-config="access_key=$ARM_ACCESS_KEY" -backend-config="storage_account_name=$BACKEND_STORAGE_ACCOUNT_NAME" -backend-config="container_name=$BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME" -backend-config="key=$BACKEND_KEY" -backend-config="resource_group_name=$RG_NAME"
+                        terraform init -backend=true -backend-config="access_key=$ARM_ACCESS_KEY" -backend-config="storage_account_name=$BACKEND_STORAGE_ACCOUNT_NAME" -backend-config="container_name=$BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME" -backend-config="key=$BACKEND_KEY" -backend-config="resource_group_name=$RG_NAME"
                         """
                         }
                      }
@@ -62,7 +62,7 @@ pipeline{
             steps {
                     ansiColor('xterm') {
                     withCredentials([azureServicePrincipal(
-                    credentialsId: 'Jenkins',
+                    credentialsId: 'credential_id',
                     subscriptionIdVariable: 'ARM_SUBSCRIPTION_ID',
                     clientIdVariable: 'ARM_CLIENT_ID',
                     clientSecretVariable: 'ARM_CLIENT_SECRET',
@@ -83,7 +83,7 @@ pipeline{
 
                     ansiColor('xterm') {
                     withCredentials([azureServicePrincipal(
-                    credentialsId: 'Jenkins',
+                    credentialsId: 'credential_id,
                     subscriptionIdVariable: 'ARM_SUBSCRIPTION_ID',
                     clientIdVariable: 'ARM_CLIENT_ID',
                     clientSecretVariable: 'ARM_CLIENT_SECRET',
@@ -114,7 +114,7 @@ pipeline{
             steps {
                     ansiColor('xterm') {
                     withCredentials([azureServicePrincipal(
-                    credentialsId: 'Jenkins',
+                    credentialsId: 'redential_id',
                     subscriptionIdVariable: 'ARM_SUBSCRIPTION_ID',
                     clientIdVariable: 'ARM_CLIENT_ID',
                     clientSecretVariable: 'ARM_CLIENT_SECRET',
