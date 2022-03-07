@@ -86,6 +86,7 @@ pipeline{
                     tenantIdVariable: 'ARM_TENANT_ID'
                 ), string(credentialsId: 'access_key', variable: 'ARM_ACCESS_KEY')]) {
                         
+                        dir("AVDGIT/AZVDI/.terraform") {
                         sh """
                         
                         echo "Creating Terraform Plan"
