@@ -10,6 +10,8 @@ pipeline{
     }
 
       parameters {
+        TF_WORKSPACE = 'default' //Sets the Terraform Workspace
+        TF_IN_AUTOMATION = 'true'
 
         string(name: 'AZURE_KEYVAULT_URL', defaultValue: 'https://packkeyvault2.vault.azure.net')
 
