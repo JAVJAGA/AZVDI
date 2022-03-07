@@ -25,7 +25,7 @@ pipeline{
 
             options {
               azureKeyVault(
-                credentialID: "credential_id",
+                credentialID: 'credential_id',
                 keyVaultURL: "${params.AZURE_KEYVAULT_URL}",
                 secrets: [
                     [envVariable: 'BACKEND_STORAGE_ACCOUNT_NAME', name: 'BACKEND-STORAGE-ACCOUNT-NAME', secretType: 'Secret'],
@@ -40,7 +40,7 @@ pipeline{
             steps {
                     ansiColor('xterm') {
                     withCredentials([azureServicePrincipal(
-                    credentialsId: 'azure_service_principal',
+                    credentialsId: 'credential_id',
                     subscriptionIdVariable: 'ARM_SUBSCRIPTION_ID',
                     clientIdVariable: 'ARM_CLIENT_ID',
                     clientSecretVariable: 'ARM_CLIENT_SECRET',
