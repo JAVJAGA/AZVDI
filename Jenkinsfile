@@ -83,7 +83,7 @@ pipeline{
 
                     ansiColor('xterm') {
                     withCredentials([azureServicePrincipal(
-                    credentialsId: 'credential_id,
+                    credentialsId: 'credential_id',
                     subscriptionIdVariable: 'ARM_SUBSCRIPTION_ID',
                     clientIdVariable: 'ARM_CLIENT_ID',
                     clientSecretVariable: 'ARM_CLIENT_SECRET',
