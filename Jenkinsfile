@@ -46,7 +46,7 @@ pipeline{
                     clientSecretVariable: 'ARM_CLIENT_SECRET',
                     tenantIdVariable: 'ARM_TENANT_ID'
                 )]) {
-                        dir("AVDGIT/AZVDI/.terraform") {
+                        dir("src") {
                         sh """
                         echo "Initialising Terraform"
                         terraform init -backend-config="access_key=$ARM_ACCESS_KEY"-backend-config="storage_account_name=$BACKEND_STORAGE_ACCOUNT_NAME" -backend-config="container_name=$BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME" -backend-config="key=$BACKEND_KEY" -backend-config="resource_group_name=$RG_NAME"
@@ -86,11 +86,11 @@ pipeline{
                     tenantIdVariable: 'ARM_TENANT_ID'
                 ), string(credentialsId: 'access_key', variable: 'ARM_ACCESS_KEY')]) {
                         
-                        dir("AVDGIT/AZVDI/.terraform") {
+                        dir("src") {
                         sh """
                         
                         echo "Creating Terraform Plan"
-                        terraform plan -var-file="defaults.tfvars" -var "client_id=$ARM_CLIENT_ID" -var "client_secret=$ARM_CLIENT_SECRET" -var "subscription_id=$ARM_SUBSCRIPTION_ID" -var "tenant_id=$ARM_TENANT_ID"
+                        terraform plan  -var "client_id=$ARM_CLIENT_ID" -var "client_secret=$ARM_CLIENT_SECRET" -var "subscription_id=$ARM_SUBSCRIPTION_ID" -var "tenant_id=$ARM_TENANT_ID"
                         """
                         }
                 }
