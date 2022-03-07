@@ -58,6 +58,21 @@ pipeline{
   
 
         stage('Terraform Plan'){
+            options {
+              azureKeyVault(
+                credentialID: 'credential_id',
+                keyVaultURL: "${params.AZURE_KEYVAULT_URL}",
+                secrets: [
+                    [envVariable: 'BACKEND_STORAGE_ACCOUNT_NAME', name: 'BACKEND-STORAGE-ACCOUNT-NAME', secretType: 'Secret'],
+                    [envVariable: 'BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME', name: 'BACKEND-STORAGE-ACCOUNT-CONTAINER-NAME', secretType: 'Secret'],
+                    [envVariable: 'BACKEND_KEY', name: 'BACKEND-KEY', secretType: 'Secret'],
+                    [envVariable: 'RG_NAME', name: 'RG-NAME', secretType: 'Secret'],
+                    [envVariable: 'ARM_ACCESS_KEY', name: 'BACKEND-ACCESS-KEY', secretType: 'Secret']
+                ]
+              )
+            }
+            
+            
             steps {
 
                     ansiColor('xterm') {
