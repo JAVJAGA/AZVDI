@@ -46,7 +46,7 @@ pipeline{
                     clientSecretVariable: 'ARM_CLIENT_SECRET',
                     tenantIdVariable: 'ARM_TENANT_ID'
                 )]) {
-                        dir("AZVDI") {
+                        dir("") {
                         sh """
                         echo "Initialising Terraform"
                         terraform init -backend=true -backend-config="backend-dev.tfvars"
