@@ -49,7 +49,8 @@ pipeline{
                         dir("src") {
                         sh """
                         echo "Initialising Terraform"
-                        terraform init -backend=true  -backend-config="access_key=$ARM_ACCESS_KEY" -backend-config="storage_account_name=$BACKEND_STORAGE_ACCOUNT_NAME" -backend-config="container_name=$BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME" -backend-config="key=$BACKEND_KEY" -backend-config="resource_group_name=$RG_NAME"
+                        terraform init -backend=true  -backend-config="access_key=q4sxuUtFcg9fOcJ/GohgPDmuH9qKAiDuEy4SsfObCclOxe90CEdAev/pCS/Bd3VaVijQwW5pGE7HZ4RjCQ7i1w==" -backend-config="storage_account_name=stgprosegur" -backend-config="container_name=tfstate1" -backend-config="key=terraform.tfstate" -backend-config="rg_storagetfstate"
+                        
                         """
                         }
                      }
