@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 module "resource-group"{
     source = "./modules/tf-module-resource-group"
     azure_location = "westeurope"
