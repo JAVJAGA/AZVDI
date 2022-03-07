@@ -4,7 +4,7 @@ pipeline{
         "org.jenkinsci.plugins.terraform.TerraformInstallation" "terraform"
     }
     environment {
-                TF_IN_AUTOMATION = "true"
+                
                // KEYVAULT_URL = credentials('azure_keyvault_url') # keyVaultURL not able to be dereferenced with ${env.KEYVAULT_URL}, keeping for future reference
 
     }
