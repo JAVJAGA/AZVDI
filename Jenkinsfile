@@ -6,7 +6,7 @@ pipeline{
     environment {
         TF_HOME = tool('terraform')
         TF_IN_AUTOMATION = "true"
-        PATH = "$TF_HOME:$PATH"
+        
         // KEYVAULT_URL = credentials('azure_keyvault_url') # keyVaultURL not able to be dereferenced with ${env.KEYVAULT_URL}, keeping for future reference
 
     }
