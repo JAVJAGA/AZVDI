@@ -47,7 +47,7 @@ pipeline{
                     tenantIdVariable: 'ARM_TENANT_ID'
                 )]) {
                         dir("src") {
-                        sh """
+                        sh "
                         echo "Initialising Terraform"
                         terraform init 
                         -backend=true 
@@ -56,7 +56,7 @@ pipeline{
                         -backend-config="container_name=$BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME" 
                         -backend-config="key=$BACKEND_KEY" 
                         -backend-config="resource_group_name=$RG_NAME"
-                        """
+                        "
                         }
                      }
                 }
