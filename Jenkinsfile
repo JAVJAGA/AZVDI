@@ -4,7 +4,7 @@ pipeline {
     environment {
         LB_CREDENTIALS = 'credential_id'
         FN_CREDENTIALS = 'credential_id'
-        TEMP_CREDENTIALS = ''
+        TEMP_CREDENTIALS = 'credential_id'
     }
      parameters {
         choice(name: 'environment', choices: ['DEV', 'UAT', 'PROD'], description: 'Environment (DEV / UAT / PROD)')
