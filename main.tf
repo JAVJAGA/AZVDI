@@ -17,10 +17,10 @@ module "deskappgroup" {
     hostpool_id = local.id
     resourcegroupname = var.resourcegroupname
     azure_location = var.azure_location
-    name = var.deskappgroup_name
+    deskappgroup_name = var.deskappgroup_name
     pooledhpdesktopappfriendlyname = var.pooledhpdesktopappfriendlyname
     pooledhpdesktopappdescription = var.pooledhpdesktopappdescription
-    type = var.appgroup_type
+    appgroup_type= var.appgroup_type
     depends_on = [module.hostpool.id]
 }
 
