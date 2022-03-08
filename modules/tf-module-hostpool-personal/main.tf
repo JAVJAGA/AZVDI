@@ -11,14 +11,7 @@ resource "azurerm_virtual_desktop_host_pool" "hostpool" {
 
   custom_rdp_properties    = "audiocapturemode:i:1;audiomode:i:0;camerastoredirect:s:*;usbdevicestoredirect:s:*"
 
- tags = {
-    Cloud_Provider = "AZ"
-    Environment = "PRO"
-    Owner      = "TECNOLOGIA-IF"
-    Proyect    = "SRS_21000191"
-    Proyect_Description = "MIGRATION_VDI_AZURE"
-    Region = "EUWEST"
-  }
+ 
 
  resource "azurerm_virtual_desktop_host_pool_registration_info" {
     expiration_date = time_rotating.avd_token.rotation_rfc3339
