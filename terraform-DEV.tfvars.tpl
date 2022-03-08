@@ -1,5 +1,3 @@
-# Customized the values below for your environment and either rename to terraform.tfvars or env.auto.tfvars
-
 resourcegroupname  = "RG_hostpool"
 azure_location      = "west europe"
 prefix               = "WVD"
