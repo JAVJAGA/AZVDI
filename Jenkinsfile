@@ -1,132 +1,99 @@
-pipeline{
-    agent any 
-    tools {
-        "org.jenkinsci.plugins.terraform.TerraformInstallation" "terraform"
-    }
+pipeline {
+    agent any
+
     environment {
-        TF_WORKSPACE = 'default' //Sets the Terraform Workspace
-        TF_IN_AUTOMATION = 'true'               
-               // KEYVAULT_URL = credentials('azure_keyvault_url') # keyVaultURL not able to be dereferenced with ${env.KEYVAULT_URL}, keeping for future reference
-
+        LB_CREDENTIALS = 'credential_id'
+        FN_CREDENTIALS = 'credential_id'
+        TEMP_CREDENTIALS = ''
+    }
+     parameters {
+        choice(name: 'environment', choices: ['DEV', 'UAT', 'PROD'], description: 'Environment (DEV / UAT / PROD)')
     }
 
-      parameters {
-
-
-        string(name: 'AZURE_KEYVAULT_URL', defaultValue: 'https://packkeyvault2.vault.azure.net')
-
-    }
-
-    
-    
     stages {
-    
-        stage('Terraform Init'){
-
-            options {
-              azureKeyVault(
-                credentialID: 'credential_id',
-                keyVaultURL: "${params.AZURE_KEYVAULT_URL}",
-                secrets: [
-                    [envVariable: 'BACKEND_STORAGE_ACCOUNT_NAME', name: 'BACKEND-STORAGE-ACCOUNT-NAME', secretType: 'Secret'],
-                    [envVariable: 'BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME', name: 'BACKEND-STORAGE-ACCOUNT-CONTAINER-NAME', secretType: 'Secret'],
-                    [envVariable: 'BACKEND_KEY', name: 'BACKEND-KEY', secretType: 'Secret'],
-                    [envVariable: 'RG_NAME', name: 'RG-NAME', secretType: 'Secret'],
-                    [envVariable: 'ARM_ACCESS_KEY', name: 'BACKEND-ACCESS-KEY', secretType: 'Secret']
-                ]
-              )
-            }
-
+        stage('Test') {
             steps {
-                    ansiColor('xterm') {
-                    withCredentials([azureServicePrincipal(
-                    credentialsId: 'credential_id',
-                    subscriptionIdVariable: 'ARM_SUBSCRIPTION_ID',
-                    clientIdVariable: 'ARM_CLIENT_ID',
-                    clientSecretVariable: 'ARM_CLIENT_SECRET',
-                    tenantIdVariable: 'ARM_TENANT_ID'
-                )]) {
-                        
-                        sh """
-                        echo "Initialising Terraform"
-                        terraform init -backend=true -backend-config="backend-dev.tfvars"
-                        """
-                        
-                     }
+                script {
+                    switch (params.environment) {
+                        case 'DEV':
+                            TEMP_CREDENTIALS = FN_CREDENTIALS
+                            break
+                        case 'UAT':
+                            TEMP_CREDENTIALS = LB_CREDENTIALS
+                            break  
+                        case 'PROD':
+                            TEMP_CREDENTIALS = LB_CREDENTIALS
+                            break                       
+                        default:
+                            TEMP_CREDENTIALS = LB_CREDENTIALS
+                            break
+                    }
                 }
-             }
-        }
-
-  
-
-        stage('Terraform Plan'){
-            options {
-              azureKeyVault(
-                credentialID: 'credential_id',
-                keyVaultURL: "${params.AZURE_KEYVAULT_URL}",
-                secrets: [
-                    [envVariable: 'BACKEND_STORAGE_ACCOUNT_NAME', name: 'BACKEND-STORAGE-ACCOUNT-NAME', secretType: 'Secret'],
-                    [envVariable: 'BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME', name: 'BACKEND-STORAGE-ACCOUNT-CONTAINER-NAME', secretType: 'Secret'],
-                    [envVariable: 'BACKEND_KEY', name: 'BACKEND-KEY', secretType: 'Secret'],
-                    [envVariable: 'RG_NAME', name: 'RG-NAME', secretType: 'Secret'],
-                    [envVariable: 'ARM_ACCESS_KEY', name: 'BACKEND-ACCESS-KEY', secretType: 'Secret']
-                ]
-              )
-            }
-            
-            
-            steps {
-
-                    ansiColor('xterm') {
-                    withCredentials([azureServicePrincipal(
-                    credentialsId: 'credential_id',
-                    subscriptionIdVariable: 'ARM_SUBSCRIPTION_ID',
-                    clientIdVariable: 'ARM_CLIENT_ID',
-                    clientSecretVariable: 'ARM_CLIENT_SECRET',
-                    tenantIdVariable: 'ARM_TENANT_ID'
-                ), string(credentialsId: 'access_key', variable: 'ARM_ACCESS_KEY')]) {
-                        
-                        dir("src") {
-                        sh """
-                        
-                        echo "Creating Terraform Plan"
-                        terraform plan  -var "client_id=$ARM_CLIENT_ID" -var "client_secret=$ARM_CLIENT_SECRET" -var "subscription_id=$ARM_SUBSCRIPTION_ID" -var "tenant_id=$ARM_TENANT_ID"
-                        """
-                        }
-                }
+                withCredentials([azureServicePrincipal(TEMP_CREDENTIALS)]) {
+                    script {
+                        env.ARM_CLIENT_ID = AZURE_CLIENT_ID
+                        env.ARM_CLIENT_SECRET = AZURE_CLIENT_SECRET
+                        env.ARM_TENANT_ID = AZURE_TENANT_ID
+                        env.ARM_SUBSCRIPTION_ID = AZURE_SUBSCRIPTION_ID
+                    }
+                    sh """
+                        cd test
+                        pwsh -File runner.tests.ps1 -ClientSecret ${ARM_CLIENT_SECRET} -ClientId ${ARM_CLIENT_ID} -TenantId ${ARM_TENANT_ID} -SubscriptionId ${ARM_SUBSCRIPTION_ID} -Environment ${params.environment}
+                        cd ..
+                    """
+                    nunit testResultsPattern: 'test/policies.tests-results.xml', failedTestsFailBuild: true
                 }
             }
         }
 
-        stage('Waiting for Approval'){
+        stage('Deploy') {
+            when {
+                expression { currentBuild.currentResult == 'SUCCESS' }
+            }
             steps {
-                timeout(time: 10, unit: 'MINUTES') {
-                    input (message: "Deploy the infrastructure?")
+                script {
+                    switch (params.environment) {
+                        case 'live':
+                            TEMP_CREDENTIALS = FN_CREDENTIALS
+                            break
+                        case 'priv':
+                            TEMP_CREDENTIALS = LB_CREDENTIALS
+                            break                        
+                        default:
+                            TEMP_CREDENTIALS = LB_CREDENTIALS
+                            break
+                    }
+                }
+                withCredentials([azureServicePrincipal(TEMP_CREDENTIALS)]) {
+                    script {
+                        env.ARM_CLIENT_ID = AZURE_CLIENT_ID
+                        env.ARM_CLIENT_SECRET = AZURE_CLIENT_SECRET
+                        env.ARM_TENANT_ID = AZURE_TENANT_ID
+                        env.ARM_SUBSCRIPTION_ID = AZURE_SUBSCRIPTION_ID
+                    }
+                    sh """
+                     cp -f backend-${params.environment}/backend-${params.environment}.tfvars .
+                    terraform version
+                    terraform init -no-color -backend-config="backend-${params.environment}.tfvars"
+                    terraform plan -no-color -out tfplan -var-file="terraform-${params.environment}.tfvars" -var client_secret=${ARM_CLIENT_SECRET} \
+                            -var subscription_id=${ARM_SUBSCRIPTION_ID} \
+                            -var tenant_id=${ARM_TENANT_ID} \
+                            -var client_id=${ARM_CLIENT_ID}
+                    terraform apply -no-color -auto-approve -input=false tfplan
+                    """
                 }
             }
-        
         }
-    
-
-        stage('Terraform Apply'){
-            steps {
-                    ansiColor('xterm') {
-                    withCredentials([azureServicePrincipal(
-                    credentialsId: 'redential_id',
-                    subscriptionIdVariable: 'ARM_SUBSCRIPTION_ID',
-                    clientIdVariable: 'ARM_CLIENT_ID',
-                    clientSecretVariable: 'ARM_CLIENT_SECRET',
-                    tenantIdVariable: 'ARM_TENANT_ID'
-                ), string(credentialsId: 'access_key', variable: 'ARM_ACCESS_KEY')]) {
-
-                        sh """
-                        echo "Applying the plan"
-                        terraform apply -auto-approve -var "client_id=$ARM_CLIENT_ID" -var "client_secret=$ARM_CLIENT_SECRET" -var "subscription_id=$ARM_SUBSCRIPTION_ID" -var "tenant_id=$ARM_TENANT_ID"
-                        """
-                                }
-                }
-            }
+    }
+    post {
+        // Clean after build
+        always {
+            cleanWs(cleanWhenNotBuilt: true,
+                    deleteDirs: true,
+                    disableDeferredWipeout: false,
+                    notFailBuild: true,
+                    patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                               [pattern: '.propsfile', type: 'EXCLUDE']])
         }
-
     }
 }
