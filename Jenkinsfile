@@ -74,8 +74,8 @@ pipeline {
                         env.ARM_SUBSCRIPTION_ID = AZURE_SUBSCRIPTION_ID
                     }
                     sh """
-                     cp -f backend-${params.environment}/backend-${params.environment}.tfvars.tpl ./backend-${params.environment}.tfvars
-                     cp -f terraform-DEV.tfvars.tpl ./terraform-DEV.tfvars
+                     cp -f backend-${params.environment}/backend-${params.environment}.tfvars
+                   
                     terraform version
                     terraform init -no-color -backend-config="backend-${params.environment}.tfvars" -var client_secret=${ARM_CLIENT_SECRET} \
                             -var subscription_id=${ARM_SUBSCRIPTION_ID} \

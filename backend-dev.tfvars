@@ -1,0 +1,5 @@
+subscription_id      = "ARM_SUBSCRIPTION_ID"
+resource_group_name  = "$RG_NAME"
+storage_account_name = "$BACKEND_STORAGE_ACCOUNT_NAME"
+container_name       = $BACKEND_STORAGE_ACCOUNT_CONTAINER_NAME"
+key                  = "$BACKEND_KEY"
