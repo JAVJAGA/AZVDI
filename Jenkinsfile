@@ -53,12 +53,15 @@ pipeline {
             steps {
                 script {
                     switch (params.environment) {
-                        case 'live':
+                        case 'DEV':
                             TEMP_CREDENTIALS = FN_CREDENTIALS
                             break
-                        case 'priv':
+                        case 'UAT':
                             TEMP_CREDENTIALS = LB_CREDENTIALS
-                            break                        
+                            break
+                        case 'PROD':
+                            TEMP_CREDENTIALS = LB_CREDENTIALS
+                            break                  
                         default:
                             TEMP_CREDENTIALS = LB_CREDENTIALS
                             break
