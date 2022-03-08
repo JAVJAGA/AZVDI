@@ -76,7 +76,7 @@ pipeline {
                     sh """
                      cp -f backend-${params.environment}/backend-${params.environment}.tfvars.tpl ./backend-${params.environment}.tfvars
                     terraform version
-                    terraform init -no-color -backend-config="backend-${params.environment}.tfvars"
+                    terraform init 
                     terraform plan -no-color -out tfplan -var-file="terraform-${params.environment}.tfvars" -var client_secret=${ARM_CLIENT_SECRET} \
                             -var subscription_id=${ARM_SUBSCRIPTION_ID} \
                             -var tenant_id=${ARM_TENANT_ID} \
