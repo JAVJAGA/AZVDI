@@ -17,6 +17,6 @@ resource "azurerm_virtual_desktop_host_pool" "hostpool" {
   #}
 #}
 
-resource "time_rotating" "avd_token" {
-rotation_days = 28
-}
+#resource "time_rotating" "avd_token" {
+#rotation_days = 28
+#}
