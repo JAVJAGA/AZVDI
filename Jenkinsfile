@@ -46,7 +46,7 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Terraform Init'){ 
             when {
                 expression { currentBuild.currentResult == 'SUCCESS' }
             }
@@ -75,9 +75,8 @@ pipeline {
                         env.ARM_SUBSCRIPTION_ID = AZURE_SUBSCRIPTION_ID
                     }
 
-        stages {
-    
-        stage('Terraform Init'){
+                        
+        
 
                     sh """
                      cp -f backend-${params.environment}/backend-${params.environment}.tfvars .
