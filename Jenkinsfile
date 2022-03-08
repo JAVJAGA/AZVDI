@@ -46,10 +46,7 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            when {
-                expression { currentBuild.currentResult == 'SUCCESS' }
-            }
+        stage('Deploy') 
             steps {
                 script {
                     switch (params.environment) {
