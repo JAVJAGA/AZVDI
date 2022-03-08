@@ -6,8 +6,7 @@ Run Pester and export results in NUnitXml format
 .EXAMPLE
 .\runnner.tests.ps1
 #>
-import-module -name "Pester"
-#[CmdLetBinding()]
+[CmdLetBinding()]
 param (
     [Parameter(Mandatory = $true)]
     [string]$TenantId,
