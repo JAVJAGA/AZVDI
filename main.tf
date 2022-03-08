@@ -14,7 +14,7 @@ module "hostpool"{
 
 module "deskappgroup" {
     source = "./modules/tf-module-deskappgroup"
-    hostpool_id = module.hostpool.id
+    hostpool_id = local.id
     resourcegroupname = var.resourcegroupname
     azure_location = var.azure_location
     name = var.deskappgroup_name
@@ -24,3 +24,9 @@ module "deskappgroup" {
     depends_on = [module.hostpool.id]
 }
 
+locals {
+     
+     id=module.Hostpool.id
+  
+     
+}
