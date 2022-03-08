@@ -74,20 +74,29 @@ pipeline {
                         env.ARM_TENANT_ID = AZURE_TENANT_ID
                         env.ARM_SUBSCRIPTION_ID = AZURE_SUBSCRIPTION_ID
                     }
+
+        stages {
+    
+        stage('Terraform Init'){
+
                     sh """
                      cp -f backend-${params.environment}/backend-${params.environment}.tfvars .
                     terraform version
                     terraform init -no-color -backend-config="backend-${params.environment}.tfvars"
+                    """
+                }
+
+            }
                     terraform plan -no-color -out tfplan -var-file="terraform-${params.environment}.tfvars" -var client_secret=${ARM_CLIENT_SECRET} \
                             -var subscription_id=${ARM_SUBSCRIPTION_ID} \
                             -var tenant_id=${ARM_TENANT_ID} \
                             -var client_id=${ARM_CLIENT_ID}
                     terraform apply -no-color -auto-approve -input=false tfplan
-                    """
-                }
-            }
-        }
-    }
+                    
+                
+            
+        
+    
     post {
         // Clean after build
         always {
