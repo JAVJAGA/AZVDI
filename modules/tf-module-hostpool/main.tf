@@ -12,7 +12,7 @@ resource "azurerm_virtual_desktop_host_pool" "hostpool" {
 
 }
 
- resource "azurerm_virtual_desktop_host_pool_registration_info" {
+ resource "azurerm_virtual_desktop_host_pool_registration_info" "registration_info"{
     expiration_date = time_rotating.avd_token.rotation_rfc3339
   }
 
