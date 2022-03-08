@@ -5,8 +5,8 @@ module "hostpool"{
     prefix               = "WVD"
     hostpool_name         = "Hostpool1"
     pooledhpmaxsessions  =  "2" #"Max sessions per pooled host"
-    type                 = "pooled"
-     loadbalancertype     = "DepthFirst"
+    type                 = "Pooled"
+    loadbalancertype     = "DepthFirst"
 
    
 

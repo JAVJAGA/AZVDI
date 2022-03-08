@@ -24,7 +24,7 @@ variable "prefix" {
 variable "type" {
   type        = string
  description = "Type of Hostpool, your host pool will be Personal or Pooled" 
- default = "Pooled"
+ 
   
 }
 
