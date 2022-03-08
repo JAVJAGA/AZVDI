@@ -7,11 +7,14 @@ terraform {
   }
   required_version = ">= 0.12.24"
   backend "azurerm" {}
-  features {}
+ 
 }
 
 
-
+provider "azurerm" {
+  features {}
+  skip_provider_registration = true
+}
 
 
 
