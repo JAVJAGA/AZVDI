@@ -26,7 +26,7 @@ module "deskappgroup" {
 
 locals {
      
-     id=module.Hostpool.id
+     id=module.hostpool.id
   
      
 }
