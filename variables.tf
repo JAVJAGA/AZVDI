@@ -61,10 +61,7 @@ variable "pooledhpdesktopappdescription" {
   type        = string  
 }
 
-variable "hostpool_id" {
-  type       = string
-  description = "ID of HostPool  where deploy Desktop App Group"
-}
+
 /*************************************/
 # Provider Variables
 /*************************************/
