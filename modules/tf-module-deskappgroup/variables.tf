@@ -16,7 +16,7 @@ variable "deskappgroup_name" {
   description = "Name of the Desktop Application Group"
 }
 
-variable "type" {
+variable "appgroup_type" {
   type        = string
   description = "Type of Desktop Application Group"
   
