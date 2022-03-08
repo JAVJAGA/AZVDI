@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    tools {
+        "org.jenkinsci.plugins.terraform.TerraformInstallation" "terraform"
+    }
     environment {
         LB_CREDENTIALS = 'credential_id'
         FN_CREDENTIALS = 'credential_id'
