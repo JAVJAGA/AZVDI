@@ -48,7 +48,7 @@ pipeline {
 
         stage('Deploy') {
             when {
-                expression { currentBuild.currentResult == '' }
+                expression { currentBuild.currentResult == '*' }
             }
             steps {
                 script {
