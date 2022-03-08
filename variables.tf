@@ -50,10 +50,6 @@ variable "pooledhpdesktopappfriendlyname" {
   description = "Pooled Host Pool Desktop App Group Friendly Name"
   type        = string  
 }
-variable "hostpool_id" {
-  type       = string
-  description = "ID of HostPool  where deploy  App Group"
-}
 
 
 variable "pooledhpdesktopappdescription" {
