@@ -39,12 +39,6 @@ variable "pooledhpmaxsessions" {
 }
 
 
-variable "region"{
-    type            = string
-    description     = "Azure region"
-}   
-
-
 
 variable "tags"{
   type        = map(any)
