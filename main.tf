@@ -15,12 +15,12 @@ module "hostpool"{
 module "deskappgroup" {
     source = "./modules/tf-module-deskappgroup"
     hostpool_id = module.hostpool.id
-    resourcegroupname = module.resource-group.name
+    resourcegroupname = var.resourcegroupname
     azure_location = var.azure_location
-    prefix               = var.Prefix
-    type                  = var.appgroup_type
+    name = var.deskappgroup_name
     pooledhpdesktopappfriendlyname = var.pooledhpdesktopappfriendlyname
     pooledhpdesktopappdescription = var.pooledhpdesktopappdescription
+    type = var.appgroup_type
     depends_on = [module.hostpool.id]
 }
 

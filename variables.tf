@@ -35,6 +35,32 @@ variable "pooledhpmaxsessions" {
   type        = number  
 }
 
+variable "deskappgroup_name" {
+  type        = string
+  description = "Name of the Desktop Application Group"
+}
+
+variable "appgroup_type" {
+  type        = string
+  description = "Type of Desktop Application Group"
+  
+}
+
+variable "pooledhpdesktopappfriendlyname" {
+  description = "Pooled Host Pool Desktop App Group Friendly Name"
+  type        = string  
+}
+
+
+variable "pooledhpdesktopappdescription" {
+  description = "Pooled Host Pool Desktop App Group Description"
+  type        = string  
+}
+
+variable "hostpool_id" {
+  type       = string
+  description = "ID of HostPool  where deploy Desktop App Group"
+}
 /*************************************/
 # Provider Variables
 /*************************************/
