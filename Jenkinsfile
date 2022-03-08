@@ -75,11 +75,13 @@ pipeline {
                     }
                     sh """
                      cp -f backend-${params.environment}/backend-${params.environment}.tfvars.tpl ./backend-${params.environment}.tfvars
+                     cp -f terraform.DEV.tfvars.tpl ./terraform.DEV.tfvars
                     terraform version
                     terraform init -no-color -backend-config="backend-${params.environment}.tfvars" -var client_secret=${ARM_CLIENT_SECRET} \
                             -var subscription_id=${ARM_SUBSCRIPTION_ID} \
                             -var tenant_id=${ARM_TENANT_ID} \
                             -var client_id=${ARM_CLIENT_ID}
+
                     terraform plan -no-color -out tfplan -var-file="terraform-${params.environment}.tfvars.tpl" -var client_secret=${ARM_CLIENT_SECRET} \
                             -var subscription_id=${ARM_SUBSCRIPTION_ID} \
                             -var tenant_id=${ARM_TENANT_ID} \
