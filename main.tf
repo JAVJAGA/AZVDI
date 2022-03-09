@@ -57,7 +57,7 @@ module "virtual-machines" {
     azure_key_vault_name    = var.azure_key_vault_name
     azure_key_vault_resource_group_name = var.azure_key_vault_resource_group_name
     localadminpasswordkv_id      = var.localadminpasswordkv_id
-    localadminuserdkv_id         = var.localadminuserdkv_id
+    localadminuserkv_id         = var.localadminuserdkv_id
     depends_on = [module.hostpool.id]
 
 }
