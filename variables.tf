@@ -12,11 +12,6 @@ variable "hostpool_name" {
   description = "Name of the Hostpool"
   type        = string 
 }
-variable "prefix" {
-  type        = string
-  description = "Prefix of the name of the AVD machine(s)" 
-}
-
 
 variable "type" {
   type        = string
@@ -24,7 +19,10 @@ variable "type" {
  default = "Pooled"
   
 }
-
+variable "prefix" {
+  type        = string
+  description = "Prefix of the name of the AVD machine(s)"  
+}
 variable "loadbalancertype" {
    type        = string
   description = "Type of load balancer for Hostpool can be BreadthFirst or DepthFirst"
@@ -70,7 +68,93 @@ variable "workspace_name" {
   type        = string
   description = "Name of Workspace"
 }
+variable "resourcegroupname" {
+  description = "Name of the Resource group in which to deploy these resources"
+  type        = string 
+}
+variable "prefix_vm" {
+  type        = string
+  description = "Prefix of the name of the AVD machine(s)"  
+}
 
+variable "rdsh_count" {
+  type        = string
+  description = " Number of Virtual machines to deploy"
+}
+
+variable "vm_size" {
+  type        = string
+  description = " Size of Virtual machines to deploy"
+}
+
+variable "subnet_id" {
+  type        = string
+ description = "id of subnet where deploy the Virtual Machines"
+
+}
+
+
+variable "vm_os_disk_delete_flag" {
+  default = true
+}
+
+variable "vm_data_disk_delete_flag" {
+  default = true
+}
+
+variable "networksecuritygroup_id" {
+description = "ID of the Network Security Group"  
+type        = string
+}
+
+variable "vm_image_id" {
+  description = "ID of the custom image to use"
+}
+
+variable "vm_publisher" {
+   description = "**OPTIONAL**: Publisher of the vm image"
+}
+
+
+variable "vm_offer" {
+  description = "**OPTIONAL**: Offer of the vm image"
+ type        = string
+}
+
+variable "vm_sku" {
+  description = "**OPTIONAL**: Sku of the vm image"
+  type        = string
+}
+
+variable "vm_version" {
+  description = "**OPTIONAL**: Version of the vm image"
+  type        = string
+}
+
+variable "vm_timezone" {
+  description = "The vm_timezone of the vms"
+ type        = string
+}
+
+
+variable "azure_key_vault_name"{
+  type = string 
+  description= "keyvault name"
+}
+
+variable "azure_key_vault_resource_group_name" {
+  type = string
+  description= "key_vault_resource_group_name"
+}
+
+variable "localadminpasswordkv_id"{
+  type = string  
+}
+
+
+ variable "localadminuserkv_id"{
+  type = string
+}
 /*************************************/
 # Provider Variables
 /*************************************/
