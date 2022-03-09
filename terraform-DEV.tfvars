@@ -9,5 +9,6 @@ deskappgroup_name    = "WVD-APP"
 pooledhpdesktopappfriendlyname = "WVDAPP"
 pooledhpdesktopappdescription = "WVDAPP_APP_Desktop"
 appgroup_type= "RemoteApp"
-
- 
+workspacename = "Prosegur-Workspace"
+friendlynameworkspace = "Prosegur-Workspace"
+descriptionworkspace = "Prosegur-Workspace"

@@ -23,6 +23,18 @@ module "deskappgroup" {
     appgroup_type= var.appgroup_type
     depends_on = [module.hostpool.id]
 }
+module "workspace" {
+    source = "./modules/tf-module-workspace"
+    resourcegroupname = var.resourcegroupname
+    azure_location = var.azure_location
+    workspacename = var.workspacename
+    friendly_name = var.friendlynameworkspace
+    description   = var.descriptionworkspace
+    depends_on = [module.hostpool.id]
+}
+
+
+
 
 locals {
      
