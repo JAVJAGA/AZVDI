@@ -68,7 +68,7 @@ variable "workspace_name" {
   type        = string
   description = "Name of Workspace"
 }
-variable "resourcegroupname" {
+variable "resourcegroupname_vm" {
   description = "Name of the Resource group in which to deploy these resources"
   type        = string 
 }
