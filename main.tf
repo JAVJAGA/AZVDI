@@ -40,7 +40,7 @@ module "workspace-deskappgroup-association" {
     depends_on = [module.workspace.id, module.deskappgroup.id]
 }
 module "virtual-machines" {
-    source = "./modules/tf-module-virtual-machines" 
+    source = "./modules/tf-module-virtual-machines-vdi" 
     resourcegroupname = var.resourcegroupname_vm
     azure_location          = var.azure_location   
     rdsh_count              =  var.rdsh_count 
