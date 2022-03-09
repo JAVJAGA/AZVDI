@@ -27,7 +27,7 @@ module "workspace" {
     source = "./modules/tf-module-workspace"
     resourcegroupname = var.resourcegroupname
     azure_location = var.azure_location
-    workspacename = var.workspacename
+    workspacename = var.workspace_name
     friendly_name = var.friendlynameworkspace
     description   = var.descriptionworkspace
     depends_on = [module.hostpool.id]
