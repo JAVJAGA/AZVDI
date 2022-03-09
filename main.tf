@@ -33,7 +33,12 @@ module "workspace" {
     depends_on = [module.hostpool.id]
 }
 
-
+module "workspace-deskappgroup-association" {
+    source = "./modules/tf-module-workspace-deskappgroup-association"
+    workspace_id         = module.workspace.id
+    deskappgroup_id = module.deskappgroup.id
+    depends_on = [module.workspace.id, module.deskappgroup.id]
+}
 
 
 locals {
