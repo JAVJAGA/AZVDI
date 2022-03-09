@@ -155,6 +155,17 @@ variable "localadminpasswordkv_id"{
  variable "localadminuserkv_id"{
   type = string
 }
+
+variable "resourcegroupname_wla" {
+  description = "Name of the Resource group in which to deploy these resources"
+  type        = string  
+}
+
+
+variable "log_analytics_name" {
+  description = "The Name of log_analytics"
+  type        = string 
+}
 /*************************************/
 # Provider Variables
 /*************************************/

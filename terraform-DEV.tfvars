@@ -28,3 +28,5 @@ azure_key_vault_name    = "packkeyvault2" # Name of Key Vault
 azure_key_vault_resource_group_name = "rg_packer"
 localadminpasswordkv_id      = "/subscriptions/dede9626-4a0a-4c08-954d-62f462d4af72/resourceGroups/rg_packer/providers/Microsoft.KeyVault/vaults/packkeyvault2"
 localadminuserkv_id         = "/subscriptions/dede9626-4a0a-4c08-954d-62f462d4af72/resourceGroups/rg_packer/providers/Microsoft.KeyVault/vaults/packkeyvault2"
+log_analytics_name    = "wslaprosegur"    
+resourcegroupname_wla = "rg_wslaprosegur"
