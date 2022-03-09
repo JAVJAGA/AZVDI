@@ -70,7 +70,15 @@ variable "workspace_name" {
   type        = string
   description = "Name of Workspace"
 }
+variable "workspace_id"{
+    type = string
+    description = "Id of Workspace create"
+}
 
+variable "deskappgroup_id"{
+    type = string
+    description = "Id of Desktop Application Group create"
+}
 /*************************************/
 # Provider Variables
 /*************************************/
