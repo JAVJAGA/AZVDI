@@ -56,7 +56,20 @@ variable "pooledhpdesktopappdescription" {
   description = "Pooled Host Pool Desktop App Group Description"
   type        = string  
 }
+variable "friendlynameworkspace" {
+  description = "Friendly Workspace Name"
+  type        = string  
+}
 
+variable "descriptionworkspace" {
+  description = "Description Workspace Name"
+  type        = string  
+}
+
+variable "workspace_name" {
+  type        = string
+  description = "Name of Workspace"
+}
 
 /*************************************/
 # Provider Variables
