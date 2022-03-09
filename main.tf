@@ -46,7 +46,7 @@ module "virtual-machines" {
     rdsh_count              =  var.rdsh_count 
     prefix                  = var.prefix_vm
     subnet_id                = var.subnet_id
-    networksecuritygroup_id  = var.network-security-group.id
+    networksecuritygroup_id  = var.networksecuritygroup_id
     vm_size                 = var.vm_size 
     vm_image_id             = var.vm_image_id
     vm_publisher            = var.vm_publisher
@@ -57,7 +57,7 @@ module "virtual-machines" {
     azure_key_vault_name    = var.azure_key_vault_name
     azure_key_vault_resource_group_name = var.azure_key_vault_resource_group_name
     localadminpasswordkv_id      = var.localadminpasswordkv_id
-    localadminuserkv_id         = var.localadminuserdkv_id
+    localadminuserkv_id         = var.localadminuserkv_id
     depends_on = [module.hostpool.id]
 
 }
