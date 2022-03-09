@@ -33,7 +33,7 @@ resource "azurerm_virtual_machine" "windows_vm" {
   network_interface_ids = ["${azurerm_network_interface.rdsh.*.id[count.index]}"]
   vm_size               = "${var.vm_size}"
   # Zone info
-  zones = [2]
+  zones = [1]
   license_type = "Windows_Client"
   depends_on = [azurerm_network_interface.rdsh]
   delete_os_disk_on_termination    = true
