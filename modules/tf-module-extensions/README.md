@@ -12,7 +12,7 @@ Para configurar la Extensions es necesario completar las siguientes variables:
 
 |Variable                                        |Tipo   |Obligatoria    |Valor por Defecto  |Descripción                                                    |
 |------------------------------------------------|:-----:|:-------------:|:------------------:|:-------------------------------------------------------------:|
-|Name                                            |String |No             |Autocompletada      |Se autocompleta automaticamente con variables de nomenclatura  |
+||
 |ResourceGroupName                               |String |Si             |                    |Grupo de recursos donde se crea la Subnet                      |
 |Azure_Location                                  |String |No             |westeurope          |Localización de los recursos.                                  |
 |prefix                                          |String |Si             |		      |Prefix of the name of the AVD machine(s)                  |

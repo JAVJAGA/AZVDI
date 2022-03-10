@@ -166,6 +166,98 @@ variable "log_analytics_name" {
   description = "The Name of log_analytics"
   type        = string 
 }
+variable "log_analytics_workspace_id" {
+  description = "Workspace ID of the Log Analytics Workspace to associate the VMs with"
+}
+
+variable "log_analytics_workspace_primary_shared_key" {
+  description = "Primary Shared Key of the Log Analytics Workspace to associate the VMs with"
+}
+
+variable "vm_ids" {
+  type        = list(string)
+  description = "Id´s of Virtual Machines" 
+}
+
+variable "domain_name" {
+  type        = string 
+  description = "**OPTIONAL**: Name of the domain to join"
+}
+
+variable "oupath" {
+  type        = string   
+  description = "OU path to us during domain join"
+  default = ""
+}
+variable "regtoken" {
+  description = "Host Pool Registration Token" 
+ type        = string 
+ 
+}
+
+variable "hostpoolname" {
+  type        = string 
+  description = "Host Pool Name to Register Session Hosts" 
+    }
+
+variable "extension_custom_script" {
+  type        = string   
+  description = "**OPTIONAL**: Should a custom script extension be run on all servers"
+  default     = "false"
+}
+
+
+variable "extensions_custom_command" {
+  type        = string 
+  description = "**OPTIONAL**: Command for the custom script extension to run"
+  default     = ""
+}
+
+variable "publisher" {
+  description = "Extension Publisher"
+  type        = string
+  default     = "Microsoft.Powershell"
+}
+
+variable "type" {
+  type        = string
+  default     = "DSC"
+}
+
+variable "type_handler_version" {
+ type        = string 
+ default = ""
+}
+
+variable "auto_upgrade_minor_version" {
+  type        = string 
+  default = "true"
+}
+
+variable "artifactslocation" {
+  description = "Location of WVD Artifacts" 
+  default = "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_3-10-2021.zip"
+}
+
+variable "azure_key_vault_name"{
+  type = string
+  description = "azure_key_vault name"  
+}
+
+variable "azure_key_vault_resource_group_name" {
+  type = string
+  description = "azure_key_vault_resource_group_name" 
+}
+
+variable "domainadminpasswordkv_id"{
+  type = string
+   description = "Id of secret of domain password admin "   
+  }
+
+ variable "domainadminuserkv_id"{
+  type = string
+   description = "Id of secret of domain user admin" 
+  }
 /*************************************/
 # Provider Variables
 /*************************************/

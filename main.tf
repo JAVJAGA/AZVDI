@@ -41,23 +41,23 @@ module "workspace-deskappgroup-association" {
 }
 module "virtual-machines" {
     source = "./modules/tf-module-virtual-machines-vdi" 
-    resourcegroupname = var.resourcegroupname_vm
-    azure_location          = var.azure_location   
-    rdsh_count              =  var.rdsh_count 
-    prefix                  = var.prefix_vm
-    subnet_id                = var.subnet_id
-    networksecuritygroup_id  = var.networksecuritygroup_id
-    vm_size                 = var.vm_size 
-    vm_image_id             = var.vm_image_id
-    vm_publisher            = var.vm_publisher
-    vm_offer                = var.vm_offer
-    vm_sku                  = var.vm_sku 
-    vm_version              = var.vm_version
-    vm_timezone             = var.vm_timezone
-    azure_key_vault_name    = var.azure_key_vault_name
-    azure_key_vault_resource_group_name = var.azure_key_vault_resource_group_name
-    localadminpasswordkv_id      = var.localadminpasswordkv_id
-    localadminuserkv_id         = var.localadminuserkv_id
+    resourcegroupname                    = var.resourcegroupname_vm
+    azure_location                       = var.azure_location   
+    rdsh_count                           = var.rdsh_count 
+    prefix                               = var.prefix_vm
+    subnet_id                            = var.subnet_id
+    networksecuritygroup_id              = var.networksecuritygroup_id
+    vm_size                              = var.vm_size 
+    vm_image_id                          = var.vm_image_id
+    vm_publisher                         = var.vm_publisher
+    vm_offer                             = var.vm_offer
+    vm_sku                               = var.vm_sku 
+    vm_version                           = var.vm_version
+    vm_timezone                          = var.vm_timezone
+    azure_key_vault_name                 = var.azure_key_vault_name
+    azure_key_vault_resource_group_name  = var.azure_key_vault_resource_group_name
+    localadminpasswordkv_id              = var.localadminpasswordkv_id
+    localadminuserkv_id                  = var.localadminuserkv_id
     
 
 }
@@ -68,6 +68,27 @@ module "wsp-loganalytics"{
     log_analytics_name = var.log_analytics_name
 
 
+module "extensions" {
+    source = "./modules/tf-module-extensions"
+    vm_ids                                     = module.virtual-machines.vm_ids
+    hostpoolname                               = var.hostpool_name
+    regtoken                                   = var.regtoken  
+    resourcegroupname                          = var.resourcegroupname_vm
+    azure_location                             = var.azure_location  
+    log_analytics_workspace_id                 = var.log_analytics_workspace_id
+    log_analytics_workspace_primary_shared_key = module.wsp-loganalytics.primary_shared_key
+    rdsh_count                                 = var.rdsh_count 
+    prefix                                     = var.prefix_vm
+    domain_name                                = var.domain_name
+    oupath                                     = var.oupath
+    azure_key_vault_name                       = var.azure_key_vault_name # Name of Key Vault
+    azure_key_vault_resource_group_name        = var.azure_key_vault_resource_group_name
+    domainadminpasswordkv_id                   = var.domainadminpasswordkv_id    
+    domainadminuserkv_id                       = var.domainadminuserkv_id  
+    depends_on = [module.hostpool.id, module.virtual-machines.vm_ids]
+}
+
+  
 
 
 }
