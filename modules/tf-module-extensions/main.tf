@@ -82,7 +82,7 @@ resource "azurerm_virtual_machine_extension" "registersessionhost" {
   name                    = "${var.prefix}${format("%003d", count.index + 1)}-wvd_dsc"
   virtual_machine_id      = element(concat(var.vm_ids, [""]), count.index)
   publisher               = "Microsoft.Powershell"
-   type = "DSC"
+  type = "DSC"
   type_handler_version = "2.83"
   auto_upgrade_minor_version = true
   settings = <<-SETTINGS

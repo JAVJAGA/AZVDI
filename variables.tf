@@ -219,10 +219,6 @@ variable "publisher" {
   default     = "Microsoft.Powershell"
 }
 
-variable "type" {
-  type        = string
-  default     = "DSC"
-}
 
 variable "type_handler_version" {
  type        = string 
@@ -239,15 +235,7 @@ variable "artifactslocation" {
   default = "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_3-10-2021.zip"
 }
 
-variable "azure_key_vault_name"{
-  type = string
-  description = "azure_key_vault name"  
-}
 
-variable "azure_key_vault_resource_group_name" {
-  type = string
-  description = "azure_key_vault_resource_group_name" 
-}
 
 variable "domainadminpasswordkv_id"{
   type = string
