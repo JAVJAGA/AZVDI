@@ -68,25 +68,6 @@ module "wsp-loganalytics"{
     log_analytics_name = var.log_analytics_name
 
 
-module "extensions" {
-    source = "./modules/tf-module-extensions"
-    vm_ids                                     = module.virtual-machines.vm_ids
-    hostpoolname                               = var.hostpool_name
-    regtoken                                   = var.regtoken  
-    resourcegroupname                          = var.resourcegroupname_vm
-    azure_location                             = var.azure_location  
-    log_analytics_workspace_id                 = var.log_analytics_workspace_id
-    log_analytics_workspace_primary_shared_key = module.wsp-loganalytics.primary_shared_key
-    rdsh_count                                 = var.rdsh_count 
-    prefix                                     = var.prefix_vm
-    domain_name                                = var.domain_name
-    oupath                                     = var.oupath
-    azure_key_vault_name                       = var.azure_key_vault_name # Name of Key Vault
-    azure_key_vault_resource_group_name        = var.azure_key_vault_resource_group_name
-    domainadminpasswordkv_id                   = var.domainadminpasswordkv_id    
-    domainadminuserkv_id                       = var.domainadminuserkv_id  
-    depends_on = [module.hostpool.id, module.virtual-machines.vm_ids]
-}
 
   
 
