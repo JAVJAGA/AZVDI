@@ -77,7 +77,7 @@ module "extensions" {
     prefix                  = var.prefix_vm
     log_analytics_workspace_id = local.workspace_id
     log_analytics_workspace_primary_shared_key = local.primary_shared_key
-  
+    depends_on = [module.wsp-loganalytics.wsloganalytics_id, module.module-virtual-machines-vdi.vm_ids]
 
 
 }
@@ -85,7 +85,7 @@ locals {
      
      id=module.hostpool.id
      vm_ids=module.virtual-machines.vm_ids
-     workspace_id=module.wsp-loganalytics.workspace_id
+     wsloganalytics_id=module.wsp-loganalytics.wsloganalytics_id
      primary_shared_key= module.wsp-loganalytics.primary_shared_key
 
 }
