@@ -1,7 +1,7 @@
 #Variables Extenssions
 
 
-variable "ResourceGroupName" {
+variable "resourceGroupName" {
     type = string 
     description = "Name of the resource group where the vnet resource will be deployed"
 }
