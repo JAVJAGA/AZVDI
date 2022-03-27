@@ -62,7 +62,7 @@ module "virtual-machines" {
 
 }
 module "wsp-loganalytics"{
-    source = "./modules/tf-modute-wsp-loganalytics"
+    source = "./modules/tf-module-wsp-loganalytics"
     ResourceGroupName = var.resourcegroupname_wla
     azure_location    = var.azure_location  
     log_analytics_name = var.log_analytics_name
