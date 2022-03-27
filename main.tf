@@ -67,8 +67,16 @@ module "wsp-loganalytics"{
     azure_location    = var.azure_location  
     log_analytics_name = var.log_analytics_name
 
+}
 
-
+module "extensions" {
+    source = "./modules/tf-module-extensions"
+    vm_ids                  = module.virtual-machines.vm_ids
+    resourcegroupname       = var.resourcegroupname_vm
+    rdsh_count              = var.rdsh_count 
+    prefix                  = var.prefix_vm
+    log_analytics_workspace_id = module.wsp-log_analytics.workspace_id
+    log_analytics_workspace_primary_shared_key = module.wsp-log_analytics_workspace_primary_shared_key
   
 
 
