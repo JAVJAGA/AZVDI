@@ -33,6 +33,7 @@ resource "azurerm_virtual_machine_extension" "optimize" {
       "commandToExecute": "powershell.exe -Command \"C:\\optimize\\Win10_VirtualDesktop_Optimize.ps1 -Accepteula -WindowsVersion 21H2 -restart -Verbose"
     }
   PROTECTED_SETTINGS
+depends_on = [azurerm_virtual_machine_extension.LogAnalytics]
 
 }
 
