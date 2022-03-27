@@ -75,7 +75,7 @@ module "extensions" {
     resourcegroupname       = var.resourcegroupname_vm
     rdsh_count              = var.rdsh_count 
     prefix                  = var.prefix_vm
-    log_analytics_workspace_id = local.workspace_id
+    log_analytics_workspace_id = local.wsloganalytics_id
     log_analytics_workspace_primary_shared_key = local.primary_shared_key
     depends_on = [module.wsp-loganalytics.wsloganalytics_id, module.virtual-machines.vm_ids]
 
