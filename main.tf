@@ -85,7 +85,7 @@ locals {
      
      id=module.hostpool.id
      vm_ids=module.virtual-machines.vm_ids
-     workspace_id=module.wsp-log_analytics.workspace_id
-     primary_shared_key= module.wsp-log_analytics.primary_shared_key
+     workspace_id=module.wsp-loganalytics.workspace_id
+     primary_shared_key= module.wsp-loganalytics.primary_shared_key
 
 }
