@@ -38,7 +38,11 @@ pipeline {
                         env.ARM_TENANT_ID = AZURE_TENANT_ID
                         env.ARM_SUBSCRIPTION_ID = AZURE_SUBSCRIPTION_ID
                     }
-                    sh """
+                    sh """  
+                        Write-Output "The hostname of this machine is $env:ComputerName"
+                        Write-Output "The PowerShell version details on this machine are as follows:"
+                        $PSVersionTable
+
                         cd test
                         pwsh -File runner.tests.ps1 -ClientSecret ${ARM_CLIENT_SECRET} -ClientId ${ARM_CLIENT_ID} -TenantId ${ARM_TENANT_ID} -SubscriptionId ${ARM_SUBSCRIPTION_ID} -Environment ${params.environment}
                         cd ..
