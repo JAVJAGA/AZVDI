@@ -38,13 +38,12 @@ pipeline {
                         env.ARM_TENANT_ID = AZURE_TENANT_ID
                         env.ARM_SUBSCRIPTION_ID = AZURE_SUBSCRIPTION_ID
                     }
-                    sh """  
-                
-                        cd test
-                        pwsh -File runner.tests.ps1 -ClientSecret ${ARM_CLIENT_SECRET} -ClientId ${ARM_CLIENT_ID} -TenantId ${ARM_TENANT_ID} -SubscriptionId ${ARM_SUBSCRIPTION_ID} -Environment ${params.environment}
-                        cd ..
-                    """
-                    nunit testResultsPattern: 'test/policies.tests-results.xml', failedTestsFailBuild: false
+                   # sh """  
+                   #     cd test
+                   #     pwsh -File runner.tests.ps1 -ClientSecret ${ARM_CLIENT_SECRET} -ClientId ${ARM_CLIENT_ID} -TenantId ${ARM_TENANT_ID} -SubscriptionId ${ARM_SUBSCRIPTION_ID} -Environment ${params.environment}
+                   #     cd ..
+                   # """
+                   # nunit testResultsPattern: 'test/policies.tests-results.xml', failedTestsFailBuild: false
                 }
             }
         }
