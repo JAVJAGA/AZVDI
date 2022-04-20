@@ -86,7 +86,7 @@ module "extensions" {
 locals {     
      id=module.hostpool.id
      name=module.hostpool.name
-     regtoken=module.hostpool.regtoken
+     regtoken=module.hostpool.registration_info[0].token
      vm_ids=module.virtual-machines.vm_ids 
      wsloganalytics_id=module.wsp-loganalytics.wsloganalytics_id
      primary_shared_key= module.wsp-loganalytics.primary_shared_key
