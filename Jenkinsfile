@@ -39,7 +39,7 @@ pipeline {
                         env.ARM_SUBSCRIPTION_ID = AZURE_SUBSCRIPTION_ID
                     }
                     sh """  
-                        Update the list of packages
+                        # Update the list of packages
                          sudo apt-get update
                        # Install pre-requisite packages.
                         sudo apt-get install -y wget apt-transport-https software-properties-common
