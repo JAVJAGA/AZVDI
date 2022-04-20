@@ -22,7 +22,7 @@ SETTINGS
 
 resource "azurerm_virtual_machine_extension" "optimize" {
   count                      = "${var.extension_optimize ? var.rdsh_count : 0}"
-  name                       = "${var.prefix}${format("%003d", count.index + 1)}-LogAnalytics"
+  name                       = "${var.prefix}${format("%003d", count.index + 1)}-optimize"
   virtual_machine_id         =  element(concat(var.vm_ids, [""]), count.index)
   publisher            = "Microsoft.Compute"
   type                 = "CustomScriptExtension"
