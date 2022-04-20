@@ -65,7 +65,7 @@ module "wsp-loganalytics"{
     ResourceGroupName = var.resourcegroupname_wla
     azure_location    = var.azure_location  
     log_analytics_name = var.log_analytics_name
-    depends_on = [module.virtual-machines.vm_ids]
+    
 
 }
 
@@ -77,7 +77,7 @@ module "extensions" {
     prefix                  = var.prefix_vm
     log_analytics_workspace_id = local.wsloganalytics_id
     log_analytics_workspace_primary_shared_key = local.primary_shared_key
-    depends_on = [module.wsp-loganalytics.wsloganalytics_id, module.virtual-machines.vm_ids]
+    
 
 
 }
