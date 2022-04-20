@@ -70,7 +70,7 @@ module "wsp-loganalytics"{
 }
 
 module "extensions" {
-    source = "./modules/tf-module-extensions"
+    source = "./modules/tf-module-extensions_new"
     vm_ids                  = local.vm_ids
     resourcegroupname       = var.resourcegroupname_vm
     rdsh_count              = var.rdsh_count 
