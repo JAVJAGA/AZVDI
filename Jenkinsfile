@@ -43,7 +43,7 @@ pipeline {
                        # pwsh -File runner.tests.ps1 -ClientSecret ${ARM_CLIENT_SECRET} -ClientId ${ARM_CLIENT_ID} -TenantId ${ARM_TENANT_ID} -SubscriptionId ${ARM_SUBSCRIPTION_ID} -Environment ${params.environment}
                        cd ..
                     """
-                    nunit testResultsPattern: 'test/policies.tests-results.xml', failedTestsFailBuild: false
+                    # nunit testResultsPattern: 'test/policies.tests-results.xml', failedTestsFailBuild: false
                 }
             }
         }
