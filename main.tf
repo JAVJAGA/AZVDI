@@ -65,7 +65,7 @@ module "wsp-loganalytics"{
     ResourceGroupName = var.resourcegroupname_wla
     azure_location    = var.azure_location  
     log_analytics_name = var.log_analytics_name
-    depends_on = [module.virtual-machines.vm_ids]
+    
 
 }
 
