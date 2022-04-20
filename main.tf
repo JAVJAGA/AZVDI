@@ -58,7 +58,7 @@ module "virtual-machines" {
     azure_key_vault_resource_group_name  = var.azure_key_vault_resource_group_name
     localadminpasswordkv_id              = var.localadminpasswordkv_id
     localadminuserkv_id                  = var.localadminuserkv_id
-    
+    depends_on = [module.hostpool.id]
 
 }
 module "wsp-loganalytics"{
@@ -66,6 +66,7 @@ module "wsp-loganalytics"{
     ResourceGroupName = var.resourcegroupname_wla
     azure_location    = var.azure_location  
     log_analytics_name = var.log_analytics_name
+    depends_on = [module.virtual-machines.vm_ids]
 
 }
 
