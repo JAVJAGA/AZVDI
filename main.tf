@@ -65,14 +65,26 @@ module "wsp-loganalytics"{
     ResourceGroupName = var.resourcegroupname_wla
     azure_location    = var.azure_location  
     log_analytics_name = var.log_analytics_name
-    
+    depends_on = [module.virtual-machines.vm_ids]
 
 }
 
+module "extensions" {
+    source = "./modules/tf-module-extensions"
+    vm_ids                  = local.vm_ids
+    resourcegroupname       = var.resourcegroupname_vm
+    rdsh_count              = var.rdsh_count 
+    prefix                  = var.prefix_vm
+    log_analytics_workspace_id = local.wsloganalytics_id
+    log_analytics_workspace_primary_shared_key = local.primary_shared_key
+    depends_on = [module.wsp-loganalytics.wsloganalytics_id, module.virtual-machines.vm_ids]
 
+
+}
 
 locals {     
      id=module.hostpool.id
      vm_ids=module.virtual-machines.vm_ids 
-
+     wsloganalytics_id=module.wsp-loganalytics.wsloganalytics_id
+     primary_shared_key= module.wsp-loganalytics.primary_shared_key
 }
