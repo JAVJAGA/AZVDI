@@ -37,6 +37,37 @@ depends_on = [azurerm_virtual_machine_extension.LogAnalytics]
 
 }
 
+resource "azurerm_virtual_machine_extension" "registersessionhost" {
+  count                   = "${var.rdsh_count}"
+  name                    = "${var.prefix}${format("%003d", count.index + 1)}-wvd_dsc"
+  virtual_machine_id      = element(concat(var.vm_ids, [""]), count.index)
+  publisher               = "Microsoft.Powershell"
+  type = "DSC"
+  type_handler_version = "2.83"
+  auto_upgrade_minor_version = true
+  settings = <<-SETTINGS
+    {
+        "ModulesUrl": "${var.artifactslocation}",
+        "ConfigurationFunction" : "Configuration.ps1\\AddSessionHost",
+        "properties": {
+            "HostPoolName": "${var.hostpoolname}"
+          
+      }   
+    }
+SETTINGS
+
+
+  protected_settings = <<PROTECTED_SETTINGS
+  {
+    "properties": {
+      "RegistrationInfoToken": "${var.regtoken}"
+    }
+  }
+PROTECTED_SETTINGS
+
+  depends_on = [
+    azurerm_virtual_machine_extension.optimize]
+}
 
 
 
