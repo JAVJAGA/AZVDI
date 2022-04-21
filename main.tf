@@ -72,26 +72,26 @@ module "wsp-loganalytics"{
 
 module "extensions" {
     source = "./modules/tf-module-extensions_new"
-    vm_ids                  = local.vm_ids
-    resourcegroupname       = var.resourcegroupname_vm
-    rdsh_count              = var.rdsh_count 
-    prefix                  = var.prefix_vm
-    log_analytics_workspace_id = local.wsloganalytics_id
+    vm_ids                      = local.vm_ids
+    resourcegroupname           = var.resourcegroupname_vm
+    rdsh_count                  = var.rdsh_count 
+    prefix                      = var.prefix_vm
+    log_analytics_workspace_id  = local.wsloganalytics_id
     log_analytics_workspace_primary_shared_key = local.primary_shared_key
-    hostpoolname            = local.name
-    regtoken                = local.regtoken
+    hostpoolname                = local.name
+    regtoken                    = local.regtoken
 
 
 }
 
 module "scale_plan" {
     source = "./modules/tf-module-scaling_plan"
-    azure_location          = var.azure_location
-    resource_group_name     = var.resource_group_scaling_plan
-    friendly_name           = var.scaling_plan-friendly_name
-    description             = var.scaling_plan-description
-    hostpool_id             = local.id
-    role_definition_id      = var.role_definition_resource_id
+    azure_location                  = var.azure_location
+    resource_group_scaling_plan     = var.resource_group_scaling_plan
+    scaling_plan-friendly_name      = var.scaling_plan-friendly_name
+    scaling_plan-description        = var.scaling_plan-description
+    hostpool_id                     = local.id
+    role_definition_resource_id     = var.role_definition_resource_id
 
 
 }
