@@ -41,7 +41,7 @@ resource "azurerm_role_assignment" "scaling_plan" {
 
 
 resource "azurerm_virtual_desktop_scaling_plan" "scaling_plan" {
-  name                = var.scaling_plan-name
+  name                = var.scaling_plan_name
   location            = var.azure_location
   resource_group_name = var.resource_group_scaling_plan
   friendly_name       = var.scaling_plan_friendly_name

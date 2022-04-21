@@ -177,6 +177,10 @@ variable "resource_group_scaling_plan_id" {
   description = "id of the Resource group in which to deploy these resources"
   type        = string 
 }
+variable "resource_group_scaling_plan" {
+  description = "Name of the Resource group in which to deploy these resources"
+  type        = string 
+}
 
 
 variable "scaling_plan_friendly_name"{

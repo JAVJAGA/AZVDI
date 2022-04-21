@@ -87,6 +87,7 @@ module "extensions" {
 module "scale_plan" {
     source = "./modules/tf-module-scaling_plan"
     azure_location                            = var.azure_location
+    resource_group_scaling_plan               = var.resource_group_scaling_plan
     resource_group_scaling_plan_id            = var.resource_group_scaling_plan_id
     scaling_plan_friendly_name                = var.scaling_plan_friendly_name
     scaling_plan_description                  = var.scaling_plan_description
