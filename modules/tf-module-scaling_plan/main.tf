@@ -1,6 +1,6 @@
 resource "azurerm_role_definition" "scaling_plan" {
   name        = "AVD-AutoScale"
-  scope       = var.resource_group_scaling_plan
+  scope       = var.resource_group_scaling_plan_id
   description = "AVD AutoScale Role"
   permissions {
     actions = [
@@ -22,7 +22,7 @@ resource "azurerm_role_definition" "scaling_plan" {
     not_actions = []
   }
   assignable_scopes = [
-    azurerm_resource_group.scaling_plan.id,
+    var.resource_group.scaling_plan_id,
   ]
 }
 data "azuread_service_principal" "scaling_plan" {
@@ -30,7 +30,7 @@ data "azuread_service_principal" "scaling_plan" {
 }
 resource "azurerm_role_assignment" "scaling_plan" {
   name                             = random_uuid.scaling_plan.result
-  scope                            = azurerm_resource_group.scaling_plan.id
+  scope                            = var.azurerm_resource_group.scaling_plan.id
   #role_definition_id               = azurerm_role_definition.scaling_plan.role_definition_resource_id
   role_definition_id               = var.role_definition_resource_id
   principal_id                     = data.azuread_service_principal.scaling_plan.application_id
@@ -44,8 +44,8 @@ resource "azurerm_virtual_desktop_scaling_plan" "scaling_plan" {
   name                = var.scaling_plan-name
   location            = var.azure_location
   resource_group_name = var.resource_group_scaling_plan
-  friendly_name       = var.scaling_plan-friendly_name
-  description         = var.scaling_plan-description
+  friendly_name       = var.scaling_plan_friendly_name
+  description         = var.scaling_plan_description
   time_zone           = "GMT Standard Time"
   schedule {
     name                                 = "Weekdays"

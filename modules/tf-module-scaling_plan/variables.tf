@@ -1,7 +1,9 @@
-variable "resource_group_scaling_plan" {
+variable "resource_group_scaling_plan_id" {
   description = "Name of the Resource group in which to deploy these resources"
   type        = string 
 }
+
+
 
 variable "azure_location"{
     type = string

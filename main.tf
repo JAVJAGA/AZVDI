@@ -86,12 +86,14 @@ module "extensions" {
 
 module "scale_plan" {
     source = "./modules/tf-module-scaling_plan"
-    azure_location                  = var.azure_location
-    resource_group_scaling_plan     = var.resource_group_scaling_plan
-    scaling_plan-friendly_name      = var.scaling_plan-friendly_name
-    scaling_plan-description        = var.scaling_plan-description
-    hostpool_id                     = local.id
-    role_definition_resource_id     = var.role_definition_resource_id
+    azure_location                            = var.azure_location
+    resource_group_scaling_plan_id            = var.resource_group_scaling_plan_id
+    scaling_plan-friendly_name                = var.scaling_plan-friendly_name
+    scaling_plan-description                  = var.scaling_plan-description
+    hostpool_id                               = local.id
+    role_definition_resource_id               = var.role_definition_resource_id
+    
+
 
 
 }
@@ -103,4 +105,5 @@ locals {
      vm_ids=module.virtual-machines.vm_ids 
      wsloganalytics_id=module.wsp-loganalytics.wsloganalytics_id
      primary_shared_key= module.wsp-loganalytics.primary_shared_key
+     
 }
