@@ -9,7 +9,7 @@ resource "azurerm_virtual_desktop_host_pool" "hostpool" {
   validate_environment     = "false"
   load_balancer_type       = var.loadbalancertype
   maximum_sessions_allowed = var.pooledhpmaxsessions
-  custom_rdp_properties    = "audiocapturemode:i:1;audiomode:i:0;camerastoredirect:s:*"
+  custom_rdp_properties    = "redirectprinters:i:1;redirectsmartcards:i:1;redirectclipboard:i:1;drivestoredirect:s:*;devicestoredirect:s:*;redirectcomports:i:0;usbdevicestoredirect:s:*;enablecredsspsupport:i:1;use multimon:i:1"
 }
 
 #resource "azurerm_virtual_desktop_host_pool_registration_info" "registration_info" {
