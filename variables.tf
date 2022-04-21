@@ -167,11 +167,10 @@ variable "log_analytics_name" {
   type        = string 
 }
 
-variable "regtoken" {
-  description = "Host Pool Registration Token" 
- type        = string 
- 
-}
+#variable "regtoken" {
+#  description = "Host Pool Registration Token" 
+# type        = string 
+#}
 
 /*************************************/
 # Provider Variables
