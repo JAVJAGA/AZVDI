@@ -32,7 +32,7 @@ resource "time_rotating" "avd_registration_expiration" {
 }
 
 resource "azurerm_virtual_desktop_host_pool_registration_info" "hostpool" {
-  hostpool_id     = var.hostpool_id
+  hostpool_id     = azurerm_virtual_desktop_host_pool.hostpool.id
   expiration_date = time_rotating.avd_registration_expiration.rotation_rfc3339
     depends_on = [azurerm_virtual_desktop_host_pool.hostpool]
 }
