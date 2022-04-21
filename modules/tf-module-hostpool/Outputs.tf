@@ -3,7 +3,7 @@ output "id" {
 }
 
 output "regtoken" {
- value = azurerm_virtual_desktop_host_pool.registration_info.registration_info[0].token
+ value = azurerm_virtual_desktop_host_pool.registration_info.hostpool[0].token
    sensitive = true
 }
 

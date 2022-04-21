@@ -31,7 +31,7 @@ resource "time_rotating" "avd_registration_expiration" {
   rotation_days = 29
 }
 
-resource "azurerm_virtual_desktop_host_pool_registration_info" "registration_info" {
+resource "azurerm_virtual_desktop_host_pool_registration_info" "hostpool" {
   hostpool_id     = var.hostpool_id
   expiration_date = time_rotating.avd_registration_expiration.rotation_rfc3339
     depends_on = [azurerm_virtual_desktop_host_pool.hostpool]
