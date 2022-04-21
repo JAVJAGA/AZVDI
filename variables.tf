@@ -198,10 +198,10 @@ variable "scaling_plan_description"{
 }  
 
 
-variable "role_definition_resource_id" {
-  description = "Id of role_definition_resource"
-  type        = string 
-}
+#variable "role_definition_resource_id" {
+#  description = "Id of role_definition_resource"
+#  type        = string 
+#}
 
 
 /*************************************/
