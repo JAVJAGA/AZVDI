@@ -15,6 +15,11 @@ variable "hostpool_name" {
   description = "Name of the Hostpool"
   type        = string 
 }
+
+variable "hostpool_id" {
+  description = "Id of the Hostpool"
+  type        = string 
+}
 variable "prefix" {
   type        = string
   description = "Prefix of the name of the AVD machine(s)" 
