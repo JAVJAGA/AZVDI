@@ -167,10 +167,33 @@ variable "log_analytics_name" {
   type        = string 
 }
 
+
 #variable "regtoken" {
 #  description = "Host Pool Registration Token" 
 # type        = string 
 #}
+
+variable "resource_group_scaling_plan" {
+  description = "Name of the Resource group in which to deploy these resources"
+  type        = string 
+}
+
+
+variable "scaling_plan-friendly_name"{
+    type = string
+    description = "scaling_plan-friendly_name"
+}  
+
+variable "scaling_plan-description"{
+    type = string
+    description = "scaling_plan-description"
+}  
+
+
+variable "role_definition_resource_id" {
+  description = "Id of role_definition_resource"
+  type        = string 
+}
 
 /*************************************/
 # Provider Variables
