@@ -182,6 +182,10 @@ variable "resource_group_scaling_plan" {
   type        = string 
 }
 
+variable "scaling_plan_name"{
+    type = string
+    description = "scaling plan name"
+}  
 
 variable "scaling_plan_friendly_name"{
     type = string

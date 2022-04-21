@@ -13,6 +13,10 @@ variable "azure_location"{
     description = "(Optional). Specifies the supported Azure location where the resource exists"
 }  
 
+variable "scaling_plan_name"{
+    type = string
+    description = "scaling plan name"
+}  
 
 variable "scaling_plan_friendly_name"{
     type = string
