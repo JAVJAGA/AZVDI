@@ -25,15 +25,19 @@ resource "azurerm_role_definition" "scaling_plan" {
     var.resource_group_scaling_plan_id,
   ]
 }
-data "azuread_service_principal" "scaling_plan" {
+data "azuread_service_principal" "avd-sp" {
   display_name = "Windows Virtual Desktop"
 }
-resource "azurerm_role_assignment" "scaling_plan" {
-  name                             = random_uuid.scaling_plan.result
-  scope                            = var.azurerm_resource_group.scaling_plan.id
-  #role_definition_id               = azurerm_role_definition.scaling_plan.role_definition_resource_id
+
+resource "random_uuid" "avd-sp-custom-role" {
+}
+
+resource "azurerm_role_assignment" "avd-sp-custom-role" {
+  name                             = random_uuid.avd-sp-custom-role.result
+  scope                            = var.resource_group_scaling_plan_id
+  #role_definition_id              = azurerm_role_definition.scaling_plan.role_definition_resource_id
   role_definition_id               = var.role_definition_resource_id
-  principal_id                     = data.azuread_service_principal.scaling_plan.application_id
+  principal_id                     = data.azuread_service_principal.avd-sp.id
   skip_service_principal_aad_check = true
 }
 
