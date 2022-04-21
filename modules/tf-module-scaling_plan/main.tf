@@ -1,4 +1,4 @@
-resource "azurerm_role_definition" "scaling_plan" {
+resource "azurerm_role_definition" "avd-autoscale" {
   name        = "AVD-AutoScale"
   scope       = var.resource_group_scaling_plan_id
   description = "AVD AutoScale Role"
@@ -35,8 +35,8 @@ resource "random_uuid" "avd-sp-custom-role" {
 resource "azurerm_role_assignment" "avd-sp-custom-role" {
   name                             = random_uuid.avd-sp-custom-role.result
   scope                            = var.resource_group_scaling_plan_id
-  #role_definition_id              = azurerm_role_definition.scaling_plan.role_definition_resource_id
-  role_definition_id               = var.role_definition_resource_id
+  role_definition_id              = azurerm_role_definition.avd-autoscale.role_definition_resource_id
+  #role_definition_id               = var.role_definition_resource_id
   principal_id                     = data.azuread_service_principal.avd-sp.id
   skip_service_principal_aad_check = true
 }

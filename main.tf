@@ -93,7 +93,7 @@ module "scale_plan" {
     scaling_plan_name                         = var.scaling_plan_name
     scaling_plan_description                  = var.scaling_plan_description
     hostpool_id                               = local.id
-    role_definition_resource_id               = var.role_definition_resource_id
+    #role_definition_resource_id               = var.role_definition_resource_id
     
 
 

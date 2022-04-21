@@ -36,4 +36,4 @@ resource_group_scaling_plan_id             = "/subscriptions/ac6397ad-217f-45f9-
 scaling_plan_name                          = "Scale_Plan_I"
 scaling_plan_friendly_name                 = "Scale Plan I"
 scaling_plan_description                   = "Scale Plan I"
-role_definition_resource_id                = "4d240c3a-6b8f-4702-b8aa-a0b69e8e0229"
+#role_definition_resource_id                = "4d240c3a-6b8f-4702-b8aa-a0b69e8e0229"
