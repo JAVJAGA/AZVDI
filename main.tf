@@ -84,6 +84,18 @@ module "extensions" {
 
 }
 
+module "scale_plan" {
+    source = "./modules/tf-module-scaling_plan"
+    azure_location          = var.azure_location
+    resource_group_name     = var.resource_group_scaling_plan
+    friendly_name           = var.scaling_plan-friendly_name
+    description             = var.scaling_plan-description
+    hostpool_id             = local.id
+    role_definition_id      = var.role_definition_resource_id
+
+
+}
+
 locals {     
      id=module.hostpool.id
      name=module.hostpool.name
