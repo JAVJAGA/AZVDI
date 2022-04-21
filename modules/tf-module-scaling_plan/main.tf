@@ -22,7 +22,7 @@ resource "azurerm_role_definition" "scaling_plan" {
     not_actions = []
   }
   assignable_scopes = [
-    var.resource_group.scaling_plan_id,
+    var.resource_group_scaling_plan_id,
   ]
 }
 data "azuread_service_principal" "scaling_plan" {
