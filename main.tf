@@ -4,6 +4,7 @@ module "hostpool"{
     resourcegroupname  = var.resourcegroupname
     prefix               = var.prefix
     hostpool_name         = var.hostpool_name
+    hostpool_id          = local.id
     pooledhpmaxsessions  =  var.pooledhpmaxsessions
     type                 = var.type
     loadbalancertype     = var.loadbalancertype
