@@ -13,7 +13,7 @@ pipeline {
     }
 
     
-
+     stages {
         stage('Init') {
             
             steps {
