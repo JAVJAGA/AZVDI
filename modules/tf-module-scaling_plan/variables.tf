@@ -11,12 +11,12 @@ variable "azure_location"{
 }  
 
 
-variable "scaling_plan-friendly_name"{
+variable "scaling_plan_friendly_name"{
     type = string
     description = "scaling_plan-friendly_name"
 }  
 
-variable "scaling_plan-description"{
+variable "scaling_plan_description"{
     type = string
     description = "scaling_plan-description"
 }  
