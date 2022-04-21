@@ -32,7 +32,7 @@ variable "hostpool_id" {
   description = "Id of the Hostpool"
   type        = string 
 }
-variable "role_definition_resource_id" {
-  description = "Id of role_definition_resource"
-  type        = string 
-}
+#variable "role_definition_resource_id" {
+#  description = "Id of role_definition_resource"
+#  type        = string 
+#}
