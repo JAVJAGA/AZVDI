@@ -12,41 +12,7 @@ pipeline {
         choice(name: 'environment', choices: ['DEV', 'UAT', 'PROD'], description: 'Environment (DEV / UAT / PROD)')
     }
 
-    stages {
-        stage('Test') {
-            steps {
-                script {
-                    switch (params.environment) {
-                        case 'DEV':
-                            TEMP_CREDENTIALS = FN_CREDENTIALS
-                            break
-                        case 'UAT':
-                            TEMP_CREDENTIALS = LB_CREDENTIALS
-                            break  
-                        case 'PROD':
-                            TEMP_CREDENTIALS = LB_CREDENTIALS
-                            break                       
-                        default:
-                            TEMP_CREDENTIALS = LB_CREDENTIALS
-                            break
-                    }
-                }
-                withCredentials([azureServicePrincipal(TEMP_CREDENTIALS)]) {
-                    script {
-                        env.ARM_CLIENT_ID = AZURE_CLIENT_ID
-                        env.ARM_CLIENT_SECRET = AZURE_CLIENT_SECRET
-                        env.ARM_TENANT_ID = AZURE_TENANT_ID
-                        env.ARM_SUBSCRIPTION_ID = AZURE_SUBSCRIPTION_ID
-                    }
-                    sh """  
-                       cd test
-                       # pwsh -File runner.tests.ps1 -ClientSecret ${ARM_CLIENT_SECRET} -ClientId ${ARM_CLIENT_ID} -TenantId ${ARM_TENANT_ID} -SubscriptionId ${ARM_SUBSCRIPTION_ID} -Environment ${params.environment}
-                       cd ..
-                    """
-                    // nunit testResultsPattern: 'test/policies.tests-results.xml', failedTestsFailBuild: false
-                }
-            }
-        }
+    
 
         stage('Init') {
             
