@@ -28,8 +28,8 @@ resource "azurerm_virtual_desktop_scaling_plan" "scaling_plan" {
     off_peak_start_time                  = "22:00"
     off_peak_load_balancing_algorithm    = "DepthFirst"
   }
- # host_pool {
-  #  hostpool_id          = var.hostpool_id
-  #  scaling_plan_enabled = false
-  #}
+  host_pool {
+    hostpool_id          = var.hostpool_id
+    scaling_plan_enabled = false
+  }
 }
