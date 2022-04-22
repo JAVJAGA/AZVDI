@@ -1,7 +1,4 @@
-variable "resource_group_scaling_plan_id" {
-  description = "Id of the Resource group in which to deploy these resources"
-  type        = string 
-}
+
 
 variable "resource_group_scaling_plan" {
   description = "Name of the Resource group in which to deploy these resources"
@@ -32,7 +29,3 @@ variable "hostpool_id" {
   description = "Id of the Hostpool"
   type        = string 
 }
-#variable "role_definition_resource_id" {
-#  description = "Id of role_definition_resource"
-#  type        = string 
-#}

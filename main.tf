@@ -80,24 +80,23 @@ module "extensions" {
     log_analytics_workspace_primary_shared_key = local.primary_shared_key
     hostpoolname                = local.name
     regtoken                    = local.regtoken
+}
 
-
+module "Autoscale_role" {
+    source = "./modules/tf-module-autoscale-role"
+    resource_group_scaling_plan_id            = var.resource_group_scaling_plan_id
+    role_definition_resource_id               = var.role_definition_resource_id
 }
 
 module "scale_plan" {
     source = "./modules/tf-module-scaling_plan"
     azure_location                            = var.azure_location
     resource_group_scaling_plan               = var.resource_group_scaling_plan
-    resource_group_scaling_plan_id            = var.resource_group_scaling_plan_id
     scaling_plan_friendly_name                = var.scaling_plan_friendly_name
     scaling_plan_name                         = var.scaling_plan_name
     scaling_plan_description                  = var.scaling_plan_description
     hostpool_id                               = local.id
-    #role_definition_resource_id               = var.role_definition_resource_id
-    
-
-
-
+   
 }
 
 locals {     
