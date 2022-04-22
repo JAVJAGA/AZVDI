@@ -85,7 +85,7 @@ module "extensions" {
 module "Autoscale_role" {
     source = "./modules/tf-module-autoscale-role"
     resource_group_scaling_plan_id            = var.resource_group_scaling_plan_id
-    role_definition_resource_id               = var.role_definition_resource_id
+    #role_definition_resource_id               = var.role_definition_resource_id
 }
 
 module "scale_plan" {
