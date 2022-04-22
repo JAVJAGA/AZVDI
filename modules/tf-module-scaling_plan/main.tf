@@ -7,7 +7,7 @@ resource "azurerm_virtual_desktop_scaling_plan" "scaling_plan" {
   resource_group_name = var.resource_group_scaling_plan
   friendly_name       = var.scaling_plan_friendly_name
   description         = var.scaling_plan_description
-  time_zone           = "GMT Standard Time"
+  time_zone           = "Central European Standard Time"
   schedule {
     name                                 = "Weekdays"
     days_of_week                         = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
