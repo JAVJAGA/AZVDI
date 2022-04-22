@@ -30,6 +30,6 @@ resource "azurerm_virtual_desktop_scaling_plan" "scaling_plan" {
   }
   host_pool {
     hostpool_id          = var.hostpool_id
-    scaling_plan_enabled = false
+    scaling_plan_enabled = true
   }
 }
