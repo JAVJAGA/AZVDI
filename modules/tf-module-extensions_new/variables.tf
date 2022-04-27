@@ -41,6 +41,33 @@ variable "vm_ids" {
   description = "Id´s of Virtual Machines" 
 }
 
+variable "domain_joined" {
+ type        = string 
+  description = "**OPTIONAL**: Should the machine join a domain"
+  default     = "true"
+}
+
+variable "domain_name" {
+  type        = string 
+  description = "**OPTIONAL**: Name of the domain to join"
+}
+
+variable "oupath" {
+  type        = string   
+  description = "OU path to us during domain join"
+  default = ""
+}
+
+variable "domainadminpasswordkv_id"{
+  type = string
+   description = "Id of secret of domain password admin "   
+  }
+
+ variable "domainadminuserkv_id"{
+  type = string
+   description = "Id of secret of domain user admin" 
+  }
+  
 variable "extension_optimize" {
   description = "**OPTIONAL**: Should  be attached to all servers"
   default     = "true"

@@ -72,14 +72,20 @@ module "wsp-loganalytics"{
 
 module "extensions" {
     source = "./modules/tf-module-extensions_new"
-    vm_ids                      = local.vm_ids
-    resourcegroupname           = var.resourcegroupname_vm
-    rdsh_count                  = var.rdsh_count 
-    prefix                      = var.prefix_vm
-    log_analytics_workspace_id  = local.wsloganalytics_id
+    vm_ids                               = local.vm_ids
+    resourcegroupname                    = var.resourcegroupname_vm
+    rdsh_count                           = var.rdsh_count 
+    prefix                               = var.prefix_vm
+    log_analytics_workspace_id           = local.wsloganalytics_id
     log_analytics_workspace_primary_shared_key = local.primary_shared_key
-    hostpoolname                = local.name
-    regtoken                    = local.regtoken
+    domain_name                          = var.domain_name
+    oupath                               = var.oupath
+    azure_key_vault_name                 = var.azure_key_vault_name
+    azure_key_vault_resource_group_name  = var.azure_key_vault_resource_group_name
+    domainadminpasswordkv_id             = var.domainadminpasswordkv_id
+    domainadminuserkv_id_id              = var.domainadminuserkv_id  
+    hostpoolname                         = local.name
+    regtoken                             = local.regtoken
 }
 
 module "Autoscale_role" {

@@ -37,6 +37,62 @@ depends_on = [azurerm_virtual_machine_extension.LogAnalytics]
 
 }
 
+# VM Extension for Domain-join
+
+
+resource "azurerm_virtual_machine_extension" "domain_joined" {
+  count                      = "${var.domain_joined ? var.rdsh_count : 0}"
+  name                       = "${var.prefix}${format("%003d", count.index + 1)}-domainJoin"
+  virtual_machine_id         =  element(concat(var.vm_ids, [""]), count.index)
+  publisher                  = "Microsoft.Compute"
+  type                       = "JsonADDomainExtension"
+  type_handler_version       = "1.3"
+  auto_upgrade_minor_version = true
+
+
+
+  settings = <<-SETTINGS
+    {
+        "Name": "${var.domain_name}",
+        "OUPath": "${var.oupath}",
+        "User" : "${data.azurerm_key_vault_secret.domainadminuserkvsecret.value}",
+        "Restart": "true",
+        "Options": "3"
+    }
+    SETTINGS
+
+  protected_settings = <<-PSETTINGS
+    {
+      "Password" : "${data.azurerm_key_vault_secret.domainadminpasswordkvsecret.value}"
+    }
+    PSETTINGS
+
+  
+  lifecycle {
+    ignore_changes = [ settings, protected_settings ]
+  }
+  
+  depends_on = [azurerm_virtual_machine_extension.optimize]
+
+}
+ 
+ data "azurerm_key_vault" "kv" {
+  name                = var.azure_key_vault_name
+  resource_group_name = var.azure_key_vault_resource_group_name
+}
+
+  data "azurerm_key_vault_secret" "domainadminpasswordkvsecret" {
+  name         = "domainadminpassword"
+  key_vault_id = var.domainadminpasswordkv_id
+}
+
+  data "azurerm_key_vault_secret" "domainadminuserkvsecret" {
+  name         = "domainadminuser"
+  key_vault_id = var.domainadminuserkv_id
+  }
+
+
+
 resource "azurerm_virtual_machine_extension" "registersessionhost" {
   count                   = "${var.rdsh_count}"
   name                    = "${var.prefix}${format("%003d", count.index + 1)}-wvd_dsc"

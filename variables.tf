@@ -167,7 +167,33 @@ variable "log_analytics_name" {
   type        = string 
 }
 
+variable "domain_joined" {
+ type        = string 
+  description = "**OPTIONAL**: Should the machine join a domain"
+  default     = "true"
+}
 
+variable "domain_name" {
+  type        = string 
+  description = "**OPTIONAL**: Name of the domain to join"
+}
+
+variable "oupath" {
+  type        = string   
+  description = "OU path to us during domain join"
+  default = ""
+}
+
+variable "domainadminpasswordkv_id"{
+  type = string
+   description = "Id of secret of domain password admin "   
+  }
+
+ variable "domainadminuserkv_id"{
+  type = string
+   description = "Id of secret of domain user admin" 
+  }
+  
 #variable "regtoken" {
 #  description = "Host Pool Registration Token" 
 # type        = string 
