@@ -111,7 +111,7 @@ variable "auto_upgrade_minor_version" {
 
 variable "artifactslocation" {
   description = "Location of WVD Artifacts" 
-  default = "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration.zip"
+  default = "https://wvdportalstorageblob.blob.core.windows.net/galleryartifacts/Configuration_01-20-2022.zip"
 }
 
 variable "azure_key_vault_name"{
