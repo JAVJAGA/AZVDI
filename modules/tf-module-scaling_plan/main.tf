@@ -16,7 +16,7 @@ resource "azurerm_virtual_desktop_scaling_plan" "scaling_plan" {
     ramp_up_minimum_hosts_percent        = 20
     ramp_up_capacity_threshold_percent   = 10
     peak_start_time                      = "09:00"
-    peak_load_balancing_algorithm        = "BreadthFirst"
+    peak_load_balancing_algorithm        = "DepthFirst"
     ramp_down_start_time                 = "19:00"
     ramp_down_load_balancing_algorithm   = "DepthFirst"
     ramp_down_minimum_hosts_percent      = 10
