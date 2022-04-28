@@ -58,6 +58,16 @@ variable "oupath" {
   default = ""
 }
 
+variable "azure_key_vault_name"{
+  type = string
+  description = "azure_key_vault name"  
+}
+
+variable "azure_key_vault_resource_group_name" {
+  type = string
+  description = "azure_key_vault_resource_group_name" 
+}
+
 variable "domainadminpasswordkv_id"{
   type = string
    description = "Id of secret of domain password admin "   
@@ -67,7 +77,7 @@ variable "domainadminpasswordkv_id"{
   type = string
    description = "Id of secret of domain user admin" 
   }
-  
+
 variable "extension_optimize" {
   description = "**OPTIONAL**: Should  be attached to all servers"
   default     = "true"
