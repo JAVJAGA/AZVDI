@@ -81,6 +81,8 @@ module "extensions" {
     domain_name                          = var.domain_name
     oupath                               = var.oupath
     azure_key_vault_name                 = var.azure_key_vault_name
+    azure_key_vault_resource_group_name  = var.azure_key_vault_resource_group_name
+    domainadminpasswordkv_id             = var.domainadminpasswordkv_id
     domainadminuserkv_id                 = var.domainadminuserkv_id  
     hostpoolname                         = local.name
     regtoken                             = local.regtoken
