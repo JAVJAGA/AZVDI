@@ -88,11 +88,11 @@ module "extensions" {
     regtoken                             = local.regtoken
 }
 
-module "Autoscale_role" {
-    source = "./modules/tf-module-autoscale-role"
-    resource_group_scaling_plan_id            = var.resource_group_scaling_plan_id
+#module "Autoscale_role" {
+#    source = "./modules/tf-module-autoscale-role"
+#    resource_group_scaling_plan_id            = var.resource_group_scaling_plan_id
     #role_definition_resource_id               = var.role_definition_resource_id
-}
+#}
 
 module "scale_plan" {
     source = "./modules/tf-module-scaling_plan"
