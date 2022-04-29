@@ -26,7 +26,7 @@ resource "azurerm_role_definition" "avd-autoscale" {
   ]
 }
 data "azuread_service_principal" "avd-sp" {
-  display_name = "Windows Virtual Desktop"
+  display_name = "Windows Virtual Desktop Client"
 }
 
 resource "random_uuid" "avd-sp-custom-role" {
