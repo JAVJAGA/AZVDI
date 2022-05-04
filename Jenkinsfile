@@ -51,7 +51,35 @@ pipeline {
                 }
             }
         }
-
+        
+         stage('terraform state rm') {
+            
+            steps {
+                script {
+                    switch (params.environment) {
+                        case 'DEV':
+                            TEMP_CREDENTIALS = FN_CREDENTIALS
+                            break
+                        case 'UAT':
+                            TEMP_CREDENTIALS = LB_CREDENTIALS
+                        case 'PROD':
+                            TEMP_CREDENTIALS = LB_CREDENTIALS
+                            break                        
+                        default:
+                            TEMP_CREDENTIALS = LB_CREDENTIALS
+                            break
+                    }
+                }
+                withCredentials([azureServicePrincipal(TEMP_CREDENTIALS)]) {
+                    script {
+                        env.ARM_CLIENT_ID = AZURE_CLIENT_ID
+                        env.ARM_CLIENT_SECRET = AZURE_CLIENT_SECRET
+                        env.ARM_TENANT_ID = AZURE_TENANT_ID
+                        env.ARM_SUBSCRIPTION_ID = AZURE_SUBSCRIPTION_ID
+                    }
+                    sh """
+                    terraform state rm module.virtual-machines, module.extensions
+                    """
         
 
          stage('Plan') {
