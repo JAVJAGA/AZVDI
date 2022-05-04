@@ -113,7 +113,7 @@ pipeline {
                         env.ARM_SUBSCRIPTION_ID = AZURE_SUBSCRIPTION_ID
                     }
                     sh """
-                    terraform state rm 'module.virtual-machines' -var client_secret=${ARM_CLIENT_SECRET} \
+                    terraform state rm module.virtual-machines -var client_secret=${ARM_CLIENT_SECRET} \
                             -var subscription_id=${ARM_SUBSCRIPTION_ID} \
                             -var tenant_id=${ARM_TENANT_ID} \
                             -var client_id=${ARM_CLIENT_ID}
