@@ -80,7 +80,9 @@ pipeline {
                     sh """
                     terraform state rm module.virtual-machines, module.extensions
                     """
-        
+                    }
+            }
+        }
 
          stage('Plan') {
             
