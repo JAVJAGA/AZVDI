@@ -78,7 +78,7 @@ stage('state list') {
                         env.ARM_SUBSCRIPTION_ID = AZURE_SUBSCRIPTION_ID
                     }
                     sh """
-                    terraform state list -var client_secret=${ARM_CLIENT_SECRET} \
+                    terraform state list -no-color -backend-config="backend-${params.environment}.tfvars"-var client_secret=${ARM_CLIENT_SECRET} \
                             -var subscription_id=${ARM_SUBSCRIPTION_ID} \
                             -var tenant_id=${ARM_TENANT_ID} \
                             -var client_id=${ARM_CLIENT_ID}
