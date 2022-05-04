@@ -78,7 +78,8 @@ pipeline {
                         env.ARM_SUBSCRIPTION_ID = AZURE_SUBSCRIPTION_ID
                     }
                     sh """
-                    terraform state rm module.virtual-machines, module.extensions
+                    terraform state rm module.virtual-machines 
+                    terraform state rm module.extensions
                     """
                     }
             }
