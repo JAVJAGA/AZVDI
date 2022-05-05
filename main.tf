@@ -107,11 +107,11 @@ module "scale_plan" {
 
 module "roles" {
     source = "./modules/tf-module-roles"
-     storage_account_id   = var.storage_account_id
-     principal_id         = var.principal_ids
-     display_name         = var.display_name_group
-     name                 = var.role_definition
-     scope                = local.dag_id
+    storage_account_id    = var.storage_account_id
+    principal_ids         = var.principal_ids
+    display_name_group    = var.display_name_group
+    role_definition       = var.role_definition
+    dag_id                = local.dag_id
 }
 
 locals {     
