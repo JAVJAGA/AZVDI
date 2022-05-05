@@ -57,9 +57,7 @@ module "virtual-machines" {
     azure_key_vault_resource_group_name  = var.azure_key_vault_resource_group_name
     localadminpasswordkv_id              = var.localadminpasswordkv_id
     localadminuserkv_id                  = var.localadminuserkv_id
-    
-
-}
+ }
 
 module "wsp-loganalytics"{
     source = "./modules/tf-module-wsp-loganalytics"
@@ -86,6 +84,8 @@ module "extensions" {
     domainadminuserkv_id                 = var.domainadminuserkv_id  
     hostpoolname                         = local.name
     regtoken                             = local.regtoken
+    depends_on = [module.virtual-machines.vm_ids]
+    
 }
 
 module "Autoscale_role" {
