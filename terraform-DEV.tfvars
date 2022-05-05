@@ -46,4 +46,3 @@ principal_ids                              = "83d1e637-76db-476d-9c88-86a4c9caa5
 display_name_group                         = "Javier García Menéndez"
 role_definition                            = "Desktop Virtualization User"
 
-}
