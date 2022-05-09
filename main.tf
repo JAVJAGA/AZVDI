@@ -102,7 +102,7 @@ module "scale_plan" {
     scaling_plan_name                         = var.scaling_plan_name
     scaling_plan_description                  = var.scaling_plan_description
     hostpool_id                               = local.id
-    log_analytics_workspace_id                = local.wsloganalytics_id
+    wslog_analytics_id                        = local.wslog_analytics_id
 }
 
 #module "roles" {
@@ -122,5 +122,6 @@ locals {
      wsloganalytics_id=module.wsp-loganalytics.wsloganalytics_id
      primary_shared_key= module.wsp-loganalytics.primary_shared_key
      dag_id=module.deskappgroup.id
+     wslog_analytics_id=module.wsp-loganalytics.id
      
 }
