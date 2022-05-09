@@ -34,8 +34,8 @@ module "workspace" {
 module "workspace-deskappgroup-association" {
     source = "./modules/tf-module-workspace-deskappgroup-association"
     workspace_id         = module.workspace.id
-    deskappgroup_id = module.deskappgroup.id
-    depends_on = [module.workspace.id, module.deskappgroup.id]
+    deskappgroup_id      = module.deskappgroup.id
+    depends_on           = [module.workspace.id, module.deskappgroup.id]
 }
 
 module "virtual-machines" {
@@ -90,28 +90,39 @@ module "extensions" {
 
 module "Autoscale_role" {
     source = "./modules/tf-module-autoscale-role"
-    scope_scaling_plan_id            = var.scope_scaling_plan_id
+    scope_scaling_plan_id                      = var.scope_scaling_plan_id
     #role_definition_resource_id               = var.role_definition_resource_id
 }
 
-#module "scale_plan" {
-#    source = "./modules/tf-module-scaling_plan"
-#    azure_location                            = var.azure_location
-#    resource_group_scaling_plan               = var.resource_group_scaling_plan
-#    scaling_plan_friendly_name                = var.scaling_plan_friendly_name
-#    scaling_plan_name                         = var.scaling_plan_name
-#    scaling_plan_description                  = var.scaling_plan_description
-#    hostpool_id                               = local.id
-#    wslog_analytics_id                        = local.wslog_analytics_id
-#}
+module "scale_plan" {
+    source = "./modules/tf-module-scaling_plan"
+    azure_location                            = var.azure_location
+    resource_group_scaling_plan               = var.resource_group_scaling_plan
+    scaling_plan_friendly_name                = var.scaling_plan_friendly_name
+    scaling_plan_name                         = var.scaling_plan_name
+    scaling_plan_description                  = var.scaling_plan_description
+    hostpool_id                               = local.id
+    wslog_analytics_id                        = module.wsp-loganalytics.id
+}
+
+module "monitoring_avd" {
+    source = "./modules/tf-module-monitoring-avd"
+    hostpool_id          = local.id
+    workspace_id         = module.workspace.id
+    deskappgroup_id      = module.deskappgroup.id
+    wslog_analytics_id   = module.wsp-loganalytics.id
+    depends_on           = [module.workspace.id, module.deskappgroup.id, module.wslog_analytics.id]
+}
+
+
 
 #module "roles" {
 #    source = "./modules/tf-module-roles"
-#   storage_account_id    = var.storage_account_id
+#    storage_account_id    = var.storage_account_id
 #    principal_ids         = var.principal_ids
 #    display_name_group    = var.display_name_group
 #    role_definition       = var.role_definition
-#    dag_id                = local.dag_id
+#    dag_id                = module.deskappgroup.id
 #}
 
 locals {     
@@ -121,7 +132,7 @@ locals {
      vm_ids=module.virtual-machines.vm_ids 
      wsloganalytics_id=module.wsp-loganalytics.wsloganalytics_id
      primary_shared_key= module.wsp-loganalytics.primary_shared_key
-     dag_id=module.deskappgroup.id
-     wslog_analytics_id=module.wsp-loganalytics.id
+   
+     
      
 }
