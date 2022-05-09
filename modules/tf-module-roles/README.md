@@ -16,7 +16,7 @@ Para configurar los Roles es necesario completar las siguientes variables:
 |dag_id                         |String |Si             |                   |The Id of the desktop application group where the role should be assigned    
 |storage_account_id             |String |Si             |                   |The Id of the Storage Account where the role should be assigned                                           |
 |role_definition                |String |Si             |                   |Definition Role to Active directory group                                                                 |
-|display_name_group	        |String |Si             |                   |display name of active directory security group what must access to resources                             |    
+|display_name_group	            |String |Si             |                   |display name of active directory security group what must access to resources                             |    
 |Depending_Resource_id          |String |Si             |Null               |Id del recurso del que depende el despliegue
                                                               |
 

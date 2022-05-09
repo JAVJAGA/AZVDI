@@ -15,7 +15,7 @@ Para configurar la Workspace es necesario completar las siguientes variables:
 |ResourceGroupName              |String |Si             |                   |Grupo de recursos donde se crea el Hostpool                    |
 |Azure_Location                 |String |No             |westeurope         |Localización de los recursos.                                  |
 |tags                           |Object |Si             |                   |Etiquetas del recurso                                          |
-|workspace_name		        |String |Si             |                   |Name of Workspace                                              |    
+|workspace_name		            |String |Si             |                   |Name of Workspace                                              |    
 |friendlynameworkspace          |String |Si             |                   |friendlyname que se dara al Workspace                          |
 |descriptionworkspace           |String |Si             |                   |descripción que se dara al Workspace                           |
 |Depending_Resource_id          |String |Si             |Null               |Id del recurso del que depende el despliegue                   |
