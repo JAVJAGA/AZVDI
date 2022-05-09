@@ -1,5 +1,5 @@
 resource "azurerm_monitor_diagnostic_setting" "avd-logs" {
-    name = "diag-prod-jvn-avd-hp"
+    name = "diag-avd-hostpool"
     target_resource_id = var.hostpool_id
     log_analytics_workspace_id = var.wslog_analytics_id
     
@@ -69,7 +69,7 @@ resource "azurerm_monitor_diagnostic_setting" "avd-logs" {
   }
 }
 resource "azurerm_monitor_diagnostic_setting" "fd-logs" {
-  name = "diag-prod-jvn-avd-fd"
+  name = "diag-avd-appgroup"
   target_resource_id = var.deskappgroup_id
   log_analytics_workspace_id = var.wslog_analytics_id 
   
@@ -99,7 +99,7 @@ resource "azurerm_monitor_diagnostic_setting" "fd-logs" {
   }
 }
 resource "azurerm_monitor_diagnostic_setting" "avd-ws-logs" {
-  name = "diag-prod-jvn-avd-ws"
+  name = "diag-avd-wspace"
   target_resource_id =  var.workspace_id
   log_analytics_workspace_id = var.wslog_analytics_id
   

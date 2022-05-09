@@ -32,7 +32,7 @@ resource "azurerm_virtual_desktop_scaling_plan" "scaling_plan" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "sp-logs" {
-  name = "diag-prod-jvn-avd-sp"
+  name = "diag-avd-scalingplan"
   target_resource_id = azurerm_virtual_desktop_scaling_plan.scaling_plan.id
   log_analytics_workspace_id = var.wslog_analytics_id
   depends_on = [
