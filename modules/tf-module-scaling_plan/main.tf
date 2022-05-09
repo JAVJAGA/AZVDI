@@ -1,6 +1,3 @@
-
-
-
 resource "azurerm_virtual_desktop_scaling_plan" "scaling_plan" {
   name                = var.scaling_plan_name
   location            = var.azure_location
@@ -33,3 +30,21 @@ resource "azurerm_virtual_desktop_scaling_plan" "scaling_plan" {
     scaling_plan_enabled = true
   }
 }
+
+resource "azurerm_monitor_diagnostic_setting" "sp-logs" {
+  name = "diag-prod-jvn-avd-sp"
+  target_resource_id = azurerm_virtual_desktop_scaling_plan.scaling_plan.id
+  log_analytics_workspace_id = var.log_analytics_workspace_id
+  depends_on = [
+    azurerm_virtual_desktop_scaling_plan.scaling_plan
+  ]
+  log {
+    category = "Autoscale"
+    enabled = "true"
+
+    retention_policy {
+      enabled = false
+    }
+  }
+}
+

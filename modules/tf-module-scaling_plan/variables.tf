@@ -29,3 +29,7 @@ variable "hostpool_id" {
   description = "Id of the Hostpool"
   type        = string 
 }
+
+variable "log_analytics_workspace_id" {
+  description = "Workspace ID of the Log Analytics Workspace to associate the Scaling Paln with it"
+}

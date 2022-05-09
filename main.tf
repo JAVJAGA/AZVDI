@@ -102,7 +102,7 @@ module "scale_plan" {
     scaling_plan_name                         = var.scaling_plan_name
     scaling_plan_description                  = var.scaling_plan_description
     hostpool_id                               = local.id
-   
+    log_analytics_workspace_id                = local.wsloganalytics_id
 }
 
 #module "roles" {
