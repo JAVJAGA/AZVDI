@@ -94,16 +94,16 @@ module "Autoscale_role" {
     #role_definition_resource_id               = var.role_definition_resource_id
 }
 
-module "scale_plan" {
-    source = "./modules/tf-module-scaling_plan"
-    azure_location                            = var.azure_location
-    resource_group_scaling_plan               = var.resource_group_scaling_plan
-    scaling_plan_friendly_name                = var.scaling_plan_friendly_name
-    scaling_plan_name                         = var.scaling_plan_name
-    scaling_plan_description                  = var.scaling_plan_description
-    hostpool_id                               = local.id
-    wslog_analytics_id                        = local.wslog_analytics_id
-}
+#module "scale_plan" {
+#    source = "./modules/tf-module-scaling_plan"
+#    azure_location                            = var.azure_location
+#    resource_group_scaling_plan               = var.resource_group_scaling_plan
+#    scaling_plan_friendly_name                = var.scaling_plan_friendly_name
+#    scaling_plan_name                         = var.scaling_plan_name
+#    scaling_plan_description                  = var.scaling_plan_description
+#    hostpool_id                               = local.id
+#    wslog_analytics_id                        = local.wslog_analytics_id
+#}
 
 #module "roles" {
 #    source = "./modules/tf-module-roles"
