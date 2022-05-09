@@ -1,6 +1,5 @@
 # Roles
-El modulo crea un recurso tipo Roles, asigna asigna un grupo de Azure AD existente a un Desktop Application Group en el resource group  que se especifique, es usado también el módulo Storage
-
+The module creates a resource type Roles, assigns an existing Azure AD group to a Desktop Application Group in the resource group you specify, assigns also the"Storage File Data SMB Share Contributor" permission in the Storage account you specify and “Desktop Virtualization User”  roll to this group.
 ## Variables de Entrada. Nomenclatura
 Para configurar los Roles es necesario completar las siguientes variables:
 
@@ -10,7 +9,7 @@ Para configurar los Roles es necesario completar las siguientes variables:
 
 ## Variables de Entrada. Recurso
 
-|Variable                       |Tipo   |Obligatoria    |Valor por Defecto  |Descripción                                                                                               |
+|Variable                       |Tipo   |Obligatoria    |Valor por Defecto  |Description                                                                                               |
 |----------------------         |:-----:|:-------------:|:-----------------:|:--------------------------------------------------------------------------------------------------------:|
 |principal_ids                  |String |Si             |                   |"The ID of the principal that is to be assigned the role at the given scope. Can be User, Group or SPN"   |                |
 |dag_id                         |String |Si             |                   |The Id of the desktop application group where the role should be assigned    
