@@ -34,8 +34,8 @@ resource "random_uuid" "avd-sp-custom-role" {
 
 resource "azurerm_role_assignment" "avd-sp-custom-role" {
   name                             = random_uuid.avd-sp-custom-role.result
-  scope                            = var.resource_group_scaling_plan_id
-  role_definition_id              = azurerm_role_definition.avd-autoscale.role_definition_resource_id
+  scope                            = var.scope_scaling_plan_id
+  role_definition_id               = azurerm_role_definition.avd-autoscale.role_definition_resource_id
   #role_definition_id               = var.role_definition_resource_id
   #principal_id                     = data.azuread_service_principal.avd-sp.id
   principal_id                     = "f6adaec8-2552-4c32-bab2-571aed1d7183"
