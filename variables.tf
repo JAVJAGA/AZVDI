@@ -244,9 +244,7 @@ variable "storage_account_id" {
   type        = string
 }
 
-variable "wslog_analytics_id" {
-  description = "ID of the Log Analytics to associate the Scaling Paln with it"
-}
+
 
 #variable "role_definition_resource_id" {
 #  description = "Id of role_definition_resource"
