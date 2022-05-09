@@ -1,6 +1,6 @@
 resource "azurerm_role_definition" "avd-autoscale" {
   name        = "AVD-AutoScale"
-  scope       = var.resource_group_scaling_plan_id
+  scope       = var.scope_scaling_plan_id
   description = "AVD AutoScale Role"
   permissions {
     actions = [
@@ -22,7 +22,7 @@ resource "azurerm_role_definition" "avd-autoscale" {
     not_actions = []
   }
   assignable_scopes = [
-    var.resource_group_scaling_plan_id,
+    var.scope_scaling_plan_id,
   ]
 }
 #data "azuread_service_principal" "avd-sp" {

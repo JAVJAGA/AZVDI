@@ -199,7 +199,7 @@ variable "domainadminpasswordkv_id"{
 # type        = string 
 #}
 
-variable "resource_group_scaling_plan_id" {
+variable "scope_scaling_plan_id" {
   description = "id of the Resource group in which to deploy these resources"
   type        = string 
 }

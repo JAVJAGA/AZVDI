@@ -1,4 +1,4 @@
-variable "resource_group_scaling_plan_id" {
+variable "scope_scaling_plan_id" {
   description = "Id of the Resource group in which to deploy these resources"
   type        = string 
 }

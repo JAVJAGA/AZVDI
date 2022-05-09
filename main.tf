@@ -69,7 +69,7 @@ module "wsp-loganalytics"{
 }
 
 module "extensions" {
-    source = "./modules/tf-module-extensions_new"
+    source = "./modules/tf-module-extensions"
     vm_ids                               = local.vm_ids
     resourcegroupname                    = var.resourcegroupname_vm
     rdsh_count                           = var.rdsh_count 
@@ -90,7 +90,7 @@ module "extensions" {
 
 module "Autoscale_role" {
     source = "./modules/tf-module-autoscale-role"
-    resource_group_scaling_plan_id            = var.resource_group_scaling_plan_id
+    scope_scaling_plan_id            = var.scope_scaling_plan_id
     #role_definition_resource_id               = var.role_definition_resource_id
 }
 
