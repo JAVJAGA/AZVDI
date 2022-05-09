@@ -111,7 +111,7 @@ module "monitoring_avd" {
     workspace_id         = module.workspace.id
     deskappgroup_id      = module.deskappgroup.id
     wslog_analytics_id   = module.wsp-loganalytics.id
-    depends_on           = [module.workspace.id, module.deskappgroup.id, module.wslog_analytics.id]
+    depends_on           = [module.workspace.id, module.deskappgroup.id, module.wsp-loganalytics.id]
 }
 
 
