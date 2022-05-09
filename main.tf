@@ -84,7 +84,7 @@ module "extensions" {
     domainadminuserkv_id                 = var.domainadminuserkv_id  
     hostpoolname                         = local.name
     regtoken                             = local.regtoken
-    
+    depends_on = [module.virtual-machines.vm_ids]
     
 }
 
